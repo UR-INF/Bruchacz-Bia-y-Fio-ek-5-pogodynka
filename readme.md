@@ -1,6 +1,7 @@
 # Pogodynka - dokumentacja projektowa
 ##  Temat projektu i nazwa aplikacji
-Pogodynka - to aplikacja desktopowa pozwalająca monitorować pogodę dla wybranych przez niego lokalizacji.
+Pogodynka - to aplikacja desktopowa, która pozwala użytkownikowi monitorować pogodę oraz czas dla wybranych przez niego lokalizacji. Elementem wyróżniającym aplikację na tle konkurencji jest tytułowa wirtualna pogodynka, która w zależności od warunków atmosferycznych zmienia swój ubior. Dzięki temu użytkownik nie będzie miał problemu z ubiorem adekwatnym do pogody.
+
 ## Cel i opis projektu
 Funkcjonalności aplikacji:
 * Jako użytkownik chcę mieć możliwość sprawdzenia pogody na najbliższy czas.
