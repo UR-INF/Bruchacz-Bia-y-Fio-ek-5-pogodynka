@@ -2,10 +2,12 @@
 #include <Windows.h>
 
 using namespace System;
-
+using namespace Windows;
+using namespace Forms;
 
 int main()
 {
-	System::Windows::Forms::Application::Run(gcnew pogodynka::MainForm());
+	Application::EnableVisualStyles();
+	Application::Run(gcnew pogodynka::MainForm());
 	return 0;
 }
