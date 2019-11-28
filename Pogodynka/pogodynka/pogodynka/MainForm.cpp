@@ -2,8 +2,7 @@
 #include <Windows.h>
 
 using namespace System;
-using namespace Windows;
-using namespace Forms;
+using namespace System::Windows::Forms;
 
 int main()
 {
