@@ -1,6 +1,10 @@
 ﻿#pragma once
-
+#include <curl/curl.h>
+#include <string>
+#include <Windows.h>
+static std::string readBuffer;
 namespace pogodynka {
+
 
 	using namespace System;
 	using namespace System::ComponentModel;
@@ -12,6 +16,17 @@ namespace pogodynka {
 	/// <summary>
 	/// Podsumowanie informacji o MainForm
 	/// </summary>
+	size_t writeFunction(void* ptr, size_t size, size_t nmemb, std::string* data) {
+		data->append((char*)ptr, size * nmemb);
+		return size * nmemb;
+	}
+
+	static size_t WriteCallback(void* contents, size_t size, size_t nmemb, void* userp)
+	{
+		((std::string*)userp)->append((char*)contents, size * nmemb);
+		return size * nmemb;
+	}
+
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
@@ -22,6 +37,8 @@ namespace pogodynka {
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
 		}
+
+
 
 	protected:
 		/// <summary>
@@ -144,6 +161,7 @@ namespace pogodynka {
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Wyślij";
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &MainForm::button1_Click);
 			// 
 			// tabControl1
 			// 
@@ -225,7 +243,7 @@ namespace pogodynka {
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
 			this->tableLayoutPanel1->RowStyles->Add((gcnew System::Windows::Forms::RowStyle()));
-			this->tableLayoutPanel1->Size = System::Drawing::Size(483, 223);
+			this->tableLayoutPanel1->Size = System::Drawing::Size(483, 316);
 			this->tableLayoutPanel1->TabIndex = 2;
 			this->tableLayoutPanel1->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MainForm::tableLayoutPanel1_Paint);
 			// 
@@ -234,7 +252,7 @@ namespace pogodynka {
 			this->labelMaxTempData->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelMaxTempData->AutoSize = true;
 			this->labelMaxTempData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold));
-			this->labelMaxTempData->Location = System::Drawing::Point(153, 201);
+			this->labelMaxTempData->Location = System::Drawing::Point(153, 248);
 			this->labelMaxTempData->Name = L"labelMaxTempData";
 			this->labelMaxTempData->Size = System::Drawing::Size(162, 20);
 			this->labelMaxTempData->TabIndex = 26;
@@ -271,7 +289,7 @@ namespace pogodynka {
 			this->labelMaxTemp->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelMaxTemp->AutoSize = true;
 			this->labelMaxTemp->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12));
-			this->labelMaxTemp->Location = System::Drawing::Point(3, 201);
+			this->labelMaxTemp->Location = System::Drawing::Point(3, 248);
 			this->labelMaxTemp->Name = L"labelMaxTemp";
 			this->labelMaxTemp->Size = System::Drawing::Size(133, 20);
 			this->labelMaxTemp->TabIndex = 24;
@@ -574,6 +592,32 @@ private: System::Void labelHumidity_Click(System::Object^ sender, System::EventA
 private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+
+	
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+	CURL* hnd = curl_easy_init();
+
+	curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
+	curl_easy_setopt(hnd, CURLOPT_URL, "https://community-open-weather-map.p.rapidapi.com/weather?callback=test&id=2172797&units=%2522metric%2522&q=Rzeszow");	struct curl_slist* headers = NULL;
+	headers = curl_slist_append(headers, "x-rapidapi-host: community-open-weather-map.p.rapidapi.com");
+	headers = curl_slist_append(headers, "x-rapidapi-key: f90acf6696msh3be9bb78dc5c56ep1a4015jsnb4b983675d4c");
+	curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+
+	//System::String^ response_string;
+	//System::String^ header_string;
+	std::string readBuffer;
+	curl_easy_setopt(hnd, CURLOPT_WRITEFUNCTION, WriteCallback);
+	curl_easy_setopt(hnd, CURLOPT_WRITEDATA, &readBuffer);
+	//curl_easy_setopt(hnd, CURLOPT_WRITEDATA, response_string);
+	//curl_easy_setopt(hnd, CURLOPT_HEADERDATA, header_string);
+
+	CURLcode ret = curl_easy_perform(hnd);
+	curl_easy_cleanup(hnd);
+	String^ something = gcnew String(readBuffer.c_str());
+	this->labelCityData->Text = something;
+	//this->labelCity->Text = header_string;
 }
 };
 }
