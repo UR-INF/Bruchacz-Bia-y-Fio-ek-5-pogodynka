@@ -125,6 +125,31 @@ namespace pogodynka {
 	private: System::Windows::Forms::Button^ rain;
 	private: System::Windows::Forms::Button^ autumn;
 	private: System::Windows::Forms::Button^ winter;
+	private: System::Windows::Forms::TabPage^ tabPage4;
+	private: System::Windows::Forms::PictureBox^ pictureBox25;
+	private: System::Windows::Forms::Label^ label2;
+
+	private: System::Windows::Forms::Label^ label3;
+	private: System::Windows::Forms::PictureBox^ pictureBox24;
+private: System::Windows::Forms::PictureBox^ pictureBox27;
+private: System::Windows::Forms::PictureBox^ pictureBox26;
+private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+private: System::Windows::Forms::PictureBox^ pictureBox28;
+private: System::Windows::Forms::PictureBox^ pictureBox29;
+private: System::Windows::Forms::PictureBox^ pictureBox30;
+private: System::Windows::Forms::Label^ label4;
+private: System::Windows::Forms::Label^ label5;
+private: System::Windows::Forms::PictureBox^ pictureBox31;
+private: System::Windows::Forms::PictureBox^ pictureBox32;
+private: System::Windows::Forms::PictureBox^ pictureBox33;
+private: System::Windows::Forms::PictureBox^ pictureBox34;
+private: System::Windows::Forms::Label^ label6;
+private: System::Windows::Forms::Label^ label7;
+private: System::Windows::Forms::PictureBox^ pictureBox35;
+private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart2;
+private: System::Windows::Forms::Label^ dataLabel;
+
+private: System::Windows::Forms::PictureBox^ pictureBox36;
 
 
 
@@ -153,6 +178,12 @@ namespace pogodynka {
 		void InitializeComponent(void)
 		{
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea9 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series9 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea10 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend10 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series10 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -207,7 +238,30 @@ namespace pogodynka {
 			this->labelTimezone = (gcnew System::Windows::Forms::Label());
 			this->labelTemp = (gcnew System::Windows::Forms::Label());
 			this->tabPage2 = (gcnew System::Windows::Forms::TabPage());
+			this->pictureBox27 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox25 = (gcnew System::Windows::Forms::PictureBox());
+			this->label2 = (gcnew System::Windows::Forms::Label());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox24 = (gcnew System::Windows::Forms::PictureBox());
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
+			this->tabPage4 = (gcnew System::Windows::Forms::TabPage());
+			this->pictureBox26 = (gcnew System::Windows::Forms::PictureBox());
+			this->chart1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->pictureBox28 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox29 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox30 = (gcnew System::Windows::Forms::PictureBox());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox31 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox32 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox33 = (gcnew System::Windows::Forms::PictureBox());
+			this->pictureBox34 = (gcnew System::Windows::Forms::PictureBox());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->label7 = (gcnew System::Windows::Forms::Label());
+			this->pictureBox35 = (gcnew System::Windows::Forms::PictureBox());
+			this->chart2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Chart());
+			this->pictureBox36 = (gcnew System::Windows::Forms::PictureBox());
+			this->dataLabel = (gcnew System::Windows::Forms::Label());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxGirl))->BeginInit();
@@ -234,6 +288,24 @@ namespace pogodynka {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
+			this->tabPage2->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox27))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox25))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox24))->BeginInit();
+			this->tabPage3->SuspendLayout();
+			this->tabPage4->SuspendLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox26))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox28))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox29))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox30))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox31))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox32))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox33))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox34))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox35))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox36))->BeginInit();
 			this->SuspendLayout();
 			// 
 			// button1
@@ -259,6 +331,7 @@ namespace pogodynka {
 			this->tabControl1->Controls->Add(this->tabPage1);
 			this->tabControl1->Controls->Add(this->tabPage2);
 			this->tabControl1->Controls->Add(this->tabPage3);
+			this->tabControl1->Controls->Add(this->tabPage4);
 			this->tabControl1->Location = System::Drawing::Point(0, 0);
 			this->tabControl1->Name = L"tabControl1";
 			this->tabControl1->SelectedIndex = 0;
@@ -424,7 +497,7 @@ namespace pogodynka {
 			// pictureBox18
 			// 
 			this->pictureBox18->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox18.Image")));
-			this->pictureBox18->Location = System::Drawing::Point(219, 462);
+			this->pictureBox18->Location = System::Drawing::Point(218, 461);
 			this->pictureBox18->Name = L"pictureBox18";
 			this->pictureBox18->Size = System::Drawing::Size(10, 56);
 			this->pictureBox18->TabIndex = 32;
@@ -442,7 +515,7 @@ namespace pogodynka {
 			// pictureBox16
 			// 
 			this->pictureBox16->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox16.Image")));
-			this->pictureBox16->Location = System::Drawing::Point(219, 315);
+			this->pictureBox16->Location = System::Drawing::Point(218, 314);
 			this->pictureBox16->Name = L"pictureBox16";
 			this->pictureBox16->Size = System::Drawing::Size(10, 56);
 			this->pictureBox16->TabIndex = 30;
@@ -451,7 +524,7 @@ namespace pogodynka {
 			// pictureBox15
 			// 
 			this->pictureBox15->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox15.Image")));
-			this->pictureBox15->Location = System::Drawing::Point(219, 242);
+			this->pictureBox15->Location = System::Drawing::Point(219, 241);
 			this->pictureBox15->Name = L"pictureBox15";
 			this->pictureBox15->Size = System::Drawing::Size(10, 56);
 			this->pictureBox15->TabIndex = 29;
@@ -460,7 +533,7 @@ namespace pogodynka {
 			// pictureBox14
 			// 
 			this->pictureBox14->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox14.Image")));
-			this->pictureBox14->Location = System::Drawing::Point(219, 171);
+			this->pictureBox14->Location = System::Drawing::Point(219, 167);
 			this->pictureBox14->Name = L"pictureBox14";
 			this->pictureBox14->Size = System::Drawing::Size(10, 56);
 			this->pictureBox14->TabIndex = 28;
@@ -469,7 +542,7 @@ namespace pogodynka {
 			// pictureBox11
 			// 
 			this->pictureBox11->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox11.Image")));
-			this->pictureBox11->Location = System::Drawing::Point(232, 486);
+			this->pictureBox11->Location = System::Drawing::Point(231, 485);
 			this->pictureBox11->Name = L"pictureBox11";
 			this->pictureBox11->Size = System::Drawing::Size(32, 32);
 			this->pictureBox11->TabIndex = 15;
@@ -501,7 +574,7 @@ namespace pogodynka {
 			this->labelMaxTempData->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelMaxTempData->AutoSize = true;
 			this->labelMaxTempData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
-			this->labelMaxTempData->Location = System::Drawing::Point(270, 490);
+			this->labelMaxTempData->Location = System::Drawing::Point(269, 489);
 			this->labelMaxTempData->Name = L"labelMaxTempData";
 			this->labelMaxTempData->Size = System::Drawing::Size(86, 20);
 			this->labelMaxTempData->TabIndex = 26;
@@ -511,7 +584,7 @@ namespace pogodynka {
 			// pictureBox6
 			// 
 			this->pictureBox6->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox6.Image")));
-			this->pictureBox6->Location = System::Drawing::Point(232, 339);
+			this->pictureBox6->Location = System::Drawing::Point(231, 338);
 			this->pictureBox6->Name = L"pictureBox6";
 			this->pictureBox6->Size = System::Drawing::Size(32, 32);
 			this->pictureBox6->TabIndex = 10;
@@ -520,7 +593,7 @@ namespace pogodynka {
 			// pictureBox5
 			// 
 			this->pictureBox5->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox5.Image")));
-			this->pictureBox5->Location = System::Drawing::Point(232, 266);
+			this->pictureBox5->Location = System::Drawing::Point(232, 265);
 			this->pictureBox5->Name = L"pictureBox5";
 			this->pictureBox5->Size = System::Drawing::Size(32, 32);
 			this->pictureBox5->TabIndex = 9;
@@ -531,7 +604,7 @@ namespace pogodynka {
 			this->labelMaxTemp->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelMaxTemp->AutoSize = true;
 			this->labelMaxTemp->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
-			this->labelMaxTemp->Location = System::Drawing::Point(228, 457);
+			this->labelMaxTemp->Location = System::Drawing::Point(227, 456);
 			this->labelMaxTemp->Name = L"labelMaxTemp";
 			this->labelMaxTemp->Size = System::Drawing::Size(174, 25);
 			this->labelMaxTemp->TabIndex = 24;
@@ -553,7 +626,7 @@ namespace pogodynka {
 			this->labelWind->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelWind->AutoSize = true;
 			this->labelWind->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
-			this->labelWind->Location = System::Drawing::Point(228, 311);
+			this->labelWind->Location = System::Drawing::Point(227, 310);
 			this->labelWind->Name = L"labelWind";
 			this->labelWind->Size = System::Drawing::Size(63, 25);
 			this->labelWind->TabIndex = 11;
@@ -577,7 +650,7 @@ namespace pogodynka {
 			this->labelHumidity->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelHumidity->AutoSize = true;
 			this->labelHumidity->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
-			this->labelHumidity->Location = System::Drawing::Point(228, 238);
+			this->labelHumidity->Location = System::Drawing::Point(228, 237);
 			this->labelHumidity->Name = L"labelHumidity";
 			this->labelHumidity->Size = System::Drawing::Size(119, 25);
 			this->labelHumidity->TabIndex = 7;
@@ -602,7 +675,7 @@ namespace pogodynka {
 			this->labelWindData->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelWindData->AutoSize = true;
 			this->labelWindData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
-			this->labelWindData->Location = System::Drawing::Point(270, 339);
+			this->labelWindData->Location = System::Drawing::Point(269, 338);
 			this->labelWindData->Name = L"labelWindData";
 			this->labelWindData->Size = System::Drawing::Size(45, 20);
 			this->labelWindData->TabIndex = 12;
@@ -638,7 +711,7 @@ namespace pogodynka {
 			this->labelHumidityData->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelHumidityData->AutoSize = true;
 			this->labelHumidityData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
-			this->labelHumidityData->Location = System::Drawing::Point(270, 271);
+			this->labelHumidityData->Location = System::Drawing::Point(270, 270);
 			this->labelHumidityData->Name = L"labelHumidityData";
 			this->labelHumidityData->Size = System::Drawing::Size(70, 20);
 			this->labelHumidityData->TabIndex = 8;
@@ -672,7 +745,7 @@ namespace pogodynka {
 			this->labelTempData->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelTempData->AutoSize = true;
 			this->labelTempData->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
-			this->labelTempData->Location = System::Drawing::Point(270, 201);
+			this->labelTempData->Location = System::Drawing::Point(270, 197);
 			this->labelTempData->Name = L"labelTempData";
 			this->labelTempData->Size = System::Drawing::Size(100, 20);
 			this->labelTempData->TabIndex = 6;
@@ -746,7 +819,7 @@ namespace pogodynka {
 			// pictureBox4
 			// 
 			this->pictureBox4->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox4.Image")));
-			this->pictureBox4->Location = System::Drawing::Point(232, 195);
+			this->pictureBox4->Location = System::Drawing::Point(232, 191);
 			this->pictureBox4->Name = L"pictureBox4";
 			this->pictureBox4->Size = System::Drawing::Size(32, 32);
 			this->pictureBox4->TabIndex = 8;
@@ -844,7 +917,7 @@ namespace pogodynka {
 			this->labelTemp->Anchor = System::Windows::Forms::AnchorStyles::Left;
 			this->labelTemp->AutoSize = true;
 			this->labelTemp->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
-			this->labelTemp->Location = System::Drawing::Point(228, 165);
+			this->labelTemp->Location = System::Drawing::Point(227, 161);
 			this->labelTemp->Name = L"labelTemp";
 			this->labelTemp->Size = System::Drawing::Size(135, 25);
 			this->labelTemp->TabIndex = 5;
@@ -854,23 +927,292 @@ namespace pogodynka {
 			// 
 			// tabPage2
 			// 
+			this->tabPage2->Controls->Add(this->chart1);
+			this->tabPage2->Controls->Add(this->pictureBox26);
+			this->tabPage2->Controls->Add(this->pictureBox27);
+			this->tabPage2->Controls->Add(this->pictureBox25);
+			this->tabPage2->Controls->Add(this->label2);
+			this->tabPage2->Controls->Add(this->label3);
+			this->tabPage2->Controls->Add(this->pictureBox24);
 			this->tabPage2->Location = System::Drawing::Point(4, 22);
 			this->tabPage2->Name = L"tabPage2";
 			this->tabPage2->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage2->Size = System::Drawing::Size(792, 574);
 			this->tabPage2->TabIndex = 1;
-			this->tabPage2->Text = L"Wykresy";
+			this->tabPage2->Text = L"Temperatura 7 dni";
 			this->tabPage2->UseVisualStyleBackColor = true;
+			// 
+			// pictureBox27
+			// 
+			this->pictureBox27->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox27.Image")));
+			this->pictureBox27->Location = System::Drawing::Point(515, 72);
+			this->pictureBox27->Name = L"pictureBox27";
+			this->pictureBox27->Size = System::Drawing::Size(32, 32);
+			this->pictureBox27->TabIndex = 33;
+			this->pictureBox27->TabStop = false;
+			// 
+			// pictureBox25
+			// 
+			this->pictureBox25->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox25.Image")));
+			this->pictureBox25->Location = System::Drawing::Point(502, 48);
+			this->pictureBox25->Name = L"pictureBox25";
+			this->pictureBox25->Size = System::Drawing::Size(10, 56);
+			this->pictureBox25->TabIndex = 32;
+			this->pictureBox25->TabStop = false;
+			// 
+			// label2
+			// 
+			this->label2->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->label2->AutoSize = true;
+			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
+			this->label2->Location = System::Drawing::Point(553, 78);
+			this->label2->Name = L"label2";
+			this->label2->Size = System::Drawing::Size(74, 20);
+			this->label2->TabIndex = 30;
+			this->label2->Text = L"Rzeszów";
+			this->label2->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// label3
+			// 
+			this->label3->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->label3->AutoSize = true;
+			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
+			this->label3->Location = System::Drawing::Point(510, 42);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(76, 25);
+			this->label3->TabIndex = 29;
+			this->label3->Text = L"Miasto";
+			this->label3->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// pictureBox24
+			// 
+			this->pictureBox24->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox24.Image")));
+			this->pictureBox24->Location = System::Drawing::Point(14, 22);
+			this->pictureBox24->Name = L"pictureBox24";
+			this->pictureBox24->Size = System::Drawing::Size(318, 108);
+			this->pictureBox24->TabIndex = 5;
+			this->pictureBox24->TabStop = false;
 			// 
 			// tabPage3
 			// 
+			this->tabPage3->Controls->Add(this->chart2);
+			this->tabPage3->Controls->Add(this->pictureBox28);
+			this->tabPage3->Controls->Add(this->pictureBox29);
+			this->tabPage3->Controls->Add(this->pictureBox30);
+			this->tabPage3->Controls->Add(this->label4);
+			this->tabPage3->Controls->Add(this->label5);
+			this->tabPage3->Controls->Add(this->pictureBox31);
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage3->Size = System::Drawing::Size(792, 574);
 			this->tabPage3->TabIndex = 2;
-			this->tabPage3->Text = L"Zegar";
+			this->tabPage3->Text = L"Opady 7 dni";
 			this->tabPage3->UseVisualStyleBackColor = true;
+			// 
+			// tabPage4
+			// 
+			this->tabPage4->Controls->Add(this->dataLabel);
+			this->tabPage4->Controls->Add(this->pictureBox36);
+			this->tabPage4->Controls->Add(this->pictureBox32);
+			this->tabPage4->Controls->Add(this->pictureBox33);
+			this->tabPage4->Controls->Add(this->pictureBox34);
+			this->tabPage4->Controls->Add(this->label6);
+			this->tabPage4->Controls->Add(this->label7);
+			this->tabPage4->Controls->Add(this->pictureBox35);
+			this->tabPage4->Font = (gcnew System::Drawing::Font(L"Segoe UI Black", 55, System::Drawing::FontStyle::Bold));
+			this->tabPage4->ForeColor = System::Drawing::SystemColors::ControlText;
+			this->tabPage4->Location = System::Drawing::Point(4, 22);
+			this->tabPage4->Name = L"tabPage4";
+			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
+			this->tabPage4->Size = System::Drawing::Size(792, 574);
+			this->tabPage4->TabIndex = 3;
+			this->tabPage4->Text = L"Zegar";
+			this->tabPage4->UseVisualStyleBackColor = true;
+			// 
+			// pictureBox26
+			// 
+			this->pictureBox26->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox26.Image")));
+			this->pictureBox26->Location = System::Drawing::Point(382, 21);
+			this->pictureBox26->Name = L"pictureBox26";
+			this->pictureBox26->Size = System::Drawing::Size(108, 109);
+			this->pictureBox26->TabIndex = 34;
+			this->pictureBox26->TabStop = false;
+			// 
+			// chart1
+			// 
+			chartArea9->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea9);
+			legend9->Name = L"Legend1";
+			this->chart1->Legends->Add(legend9);
+			this->chart1->Location = System::Drawing::Point(14, 148);
+			this->chart1->Name = L"chart1";
+			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::EarthTones;
+			series9->ChartArea = L"ChartArea1";
+			series9->Legend = L"Legend1";
+			series9->Name = L"Series1";
+			this->chart1->Series->Add(series9);
+			this->chart1->Size = System::Drawing::Size(754, 379);
+			this->chart1->TabIndex = 35;
+			this->chart1->Text = L"chart1";
+			// 
+			// pictureBox28
+			// 
+			this->pictureBox28->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox28.Image")));
+			this->pictureBox28->Location = System::Drawing::Point(382, 21);
+			this->pictureBox28->Name = L"pictureBox28";
+			this->pictureBox28->Size = System::Drawing::Size(108, 109);
+			this->pictureBox28->TabIndex = 40;
+			this->pictureBox28->TabStop = false;
+			// 
+			// pictureBox29
+			// 
+			this->pictureBox29->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox29.Image")));
+			this->pictureBox29->Location = System::Drawing::Point(515, 72);
+			this->pictureBox29->Name = L"pictureBox29";
+			this->pictureBox29->Size = System::Drawing::Size(32, 32);
+			this->pictureBox29->TabIndex = 39;
+			this->pictureBox29->TabStop = false;
+			// 
+			// pictureBox30
+			// 
+			this->pictureBox30->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox30.Image")));
+			this->pictureBox30->Location = System::Drawing::Point(502, 48);
+			this->pictureBox30->Name = L"pictureBox30";
+			this->pictureBox30->Size = System::Drawing::Size(10, 56);
+			this->pictureBox30->TabIndex = 38;
+			this->pictureBox30->TabStop = false;
+			// 
+			// label4
+			// 
+			this->label4->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
+			this->label4->Location = System::Drawing::Point(553, 78);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(74, 20);
+			this->label4->TabIndex = 37;
+			this->label4->Text = L"Rzeszów";
+			this->label4->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// label5
+			// 
+			this->label5->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->label5->AutoSize = true;
+			this->label5->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
+			this->label5->Location = System::Drawing::Point(510, 42);
+			this->label5->Name = L"label5";
+			this->label5->Size = System::Drawing::Size(76, 25);
+			this->label5->TabIndex = 36;
+			this->label5->Text = L"Miasto";
+			this->label5->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// pictureBox31
+			// 
+			this->pictureBox31->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox31.Image")));
+			this->pictureBox31->Location = System::Drawing::Point(14, 22);
+			this->pictureBox31->Name = L"pictureBox31";
+			this->pictureBox31->Size = System::Drawing::Size(318, 108);
+			this->pictureBox31->TabIndex = 35;
+			this->pictureBox31->TabStop = false;
+			// 
+			// pictureBox32
+			// 
+			this->pictureBox32->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox32.Image")));
+			this->pictureBox32->Location = System::Drawing::Point(382, 21);
+			this->pictureBox32->Name = L"pictureBox32";
+			this->pictureBox32->Size = System::Drawing::Size(108, 109);
+			this->pictureBox32->TabIndex = 46;
+			this->pictureBox32->TabStop = false;
+			// 
+			// pictureBox33
+			// 
+			this->pictureBox33->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox33.Image")));
+			this->pictureBox33->Location = System::Drawing::Point(515, 72);
+			this->pictureBox33->Name = L"pictureBox33";
+			this->pictureBox33->Size = System::Drawing::Size(32, 32);
+			this->pictureBox33->TabIndex = 45;
+			this->pictureBox33->TabStop = false;
+			// 
+			// pictureBox34
+			// 
+			this->pictureBox34->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox34.Image")));
+			this->pictureBox34->Location = System::Drawing::Point(502, 48);
+			this->pictureBox34->Name = L"pictureBox34";
+			this->pictureBox34->Size = System::Drawing::Size(10, 56);
+			this->pictureBox34->TabIndex = 44;
+			this->pictureBox34->TabStop = false;
+			// 
+			// label6
+			// 
+			this->label6->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->label6->AutoSize = true;
+			this->label6->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Italic));
+			this->label6->Location = System::Drawing::Point(553, 78);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(74, 20);
+			this->label6->TabIndex = 43;
+			this->label6->Text = L"Rzeszów";
+			this->label6->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// label7
+			// 
+			this->label7->Anchor = System::Windows::Forms::AnchorStyles::Left;
+			this->label7->AutoSize = true;
+			this->label7->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 15, System::Drawing::FontStyle::Bold));
+			this->label7->Location = System::Drawing::Point(510, 42);
+			this->label7->Name = L"label7";
+			this->label7->Size = System::Drawing::Size(76, 25);
+			this->label7->TabIndex = 42;
+			this->label7->Text = L"Miasto";
+			this->label7->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
+			// 
+			// pictureBox35
+			// 
+			this->pictureBox35->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox35.Image")));
+			this->pictureBox35->Location = System::Drawing::Point(14, 22);
+			this->pictureBox35->Name = L"pictureBox35";
+			this->pictureBox35->Size = System::Drawing::Size(318, 108);
+			this->pictureBox35->TabIndex = 41;
+			this->pictureBox35->TabStop = false;
+			// 
+			// chart2
+			// 
+			chartArea10->Name = L"ChartArea1";
+			this->chart2->ChartAreas->Add(chartArea10);
+			legend10->Name = L"Legend1";
+			this->chart2->Legends->Add(legend10);
+			this->chart2->Location = System::Drawing::Point(14, 148);
+			this->chart2->Name = L"chart2";
+			series10->ChartArea = L"ChartArea1";
+			series10->Legend = L"Legend1";
+			series10->Name = L"Series1";
+			this->chart2->Series->Add(series10);
+			this->chart2->Size = System::Drawing::Size(754, 379);
+			this->chart2->TabIndex = 41;
+			this->chart2->Text = L"chart2";
+			// 
+			// pictureBox36
+			// 
+			this->pictureBox36->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox36.Image")));
+			this->pictureBox36->Location = System::Drawing::Point(137, 188);
+			this->pictureBox36->Name = L"pictureBox36";
+			this->pictureBox36->Size = System::Drawing::Size(517, 294);
+			this->pictureBox36->TabIndex = 47;
+			this->pictureBox36->TabStop = false;
+			// 
+			// dataLabel
+			// 
+			this->dataLabel->AutoSize = true;
+			this->dataLabel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
+				static_cast<System::Int32>(static_cast<System::Byte>(94)));
+			this->dataLabel->Font = (gcnew System::Drawing::Font(L"Arial Black", 70, System::Drawing::FontStyle::Bold));
+			this->dataLabel->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
+			this->dataLabel->Location = System::Drawing::Point(196, 252);
+			this->dataLabel->Name = L"dataLabel";
+			this->dataLabel->Size = System::Drawing::Size(400, 132);
+			this->dataLabel->TabIndex = 48;
+			this->dataLabel->Text = L"14 : 28";
 			// 
 			// MainForm
 			// 
@@ -908,6 +1250,27 @@ namespace pogodynka {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
+			this->tabPage2->ResumeLayout(false);
+			this->tabPage2->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox27))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox25))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox24))->EndInit();
+			this->tabPage3->ResumeLayout(false);
+			this->tabPage3->PerformLayout();
+			this->tabPage4->ResumeLayout(false);
+			this->tabPage4->PerformLayout();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox26))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox28))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox29))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox30))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox31))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox32))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox33))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox34))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox35))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart2))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox36))->EndInit();
 			this->ResumeLayout(false);
 
 		}
