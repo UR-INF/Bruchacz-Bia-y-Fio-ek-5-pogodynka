@@ -120,7 +120,12 @@ namespace pogodynka {
 	private: System::Windows::Forms::PictureBox^ pictureBox22;
 	private: System::Windows::Forms::PictureBox^ pictureBox21;
 	private: System::Windows::Forms::PictureBox^ pictureBox20;
-	private: System::Windows::Forms::PictureBox^ pictureBox25;
+	private: System::Windows::Forms::PictureBox^ pictureBoxGirl;
+	private: System::Windows::Forms::Button^ summer;
+	private: System::Windows::Forms::Button^ rain;
+	private: System::Windows::Forms::Button^ autumn;
+	private: System::Windows::Forms::Button^ winter;
+
 
 
 
@@ -151,7 +156,11 @@ namespace pogodynka {
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
-			this->pictureBox25 = (gcnew System::Windows::Forms::PictureBox());
+			this->summer = (gcnew System::Windows::Forms::Button());
+			this->rain = (gcnew System::Windows::Forms::Button());
+			this->autumn = (gcnew System::Windows::Forms::Button());
+			this->winter = (gcnew System::Windows::Forms::Button());
+			this->pictureBoxGirl = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox23 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox22 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox21 = (gcnew System::Windows::Forms::PictureBox());
@@ -201,7 +210,7 @@ namespace pogodynka {
 			this->tabPage3 = (gcnew System::Windows::Forms::TabPage());
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox25))->BeginInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxGirl))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox22))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox21))->BeginInit();
@@ -258,7 +267,11 @@ namespace pogodynka {
 			// 
 			// tabPage1
 			// 
-			this->tabPage1->Controls->Add(this->pictureBox25);
+			this->tabPage1->Controls->Add(this->summer);
+			this->tabPage1->Controls->Add(this->rain);
+			this->tabPage1->Controls->Add(this->autumn);
+			this->tabPage1->Controls->Add(this->winter);
+			this->tabPage1->Controls->Add(this->pictureBoxGirl);
 			this->tabPage1->Controls->Add(this->pictureBox23);
 			this->tabPage1->Controls->Add(this->pictureBox22);
 			this->tabPage1->Controls->Add(this->pictureBox21);
@@ -314,14 +327,54 @@ namespace pogodynka {
 			this->tabPage1->UseVisualStyleBackColor = true;
 			this->tabPage1->Click += gcnew System::EventHandler(this, &MainForm::tabPage1_Click);
 			// 
-			// pictureBox25
+			// summer
 			// 
-			this->pictureBox25->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox25.Image")));
-			this->pictureBox25->Location = System::Drawing::Point(448, 171);
-			this->pictureBox25->Name = L"pictureBox25";
-			this->pictureBox25->Size = System::Drawing::Size(300, 350);
-			this->pictureBox25->TabIndex = 39;
-			this->pictureBox25->TabStop = false;
+			this->summer->Location = System::Drawing::Point(694, 142);
+			this->summer->Name = L"summer";
+			this->summer->Size = System::Drawing::Size(75, 23);
+			this->summer->TabIndex = 43;
+			this->summer->Text = L"summer";
+			this->summer->UseVisualStyleBackColor = true;
+			this->summer->Click += gcnew System::EventHandler(this, &MainForm::summer_Click);
+			// 
+			// rain
+			// 
+			this->rain->Location = System::Drawing::Point(612, 142);
+			this->rain->Name = L"rain";
+			this->rain->Size = System::Drawing::Size(75, 23);
+			this->rain->TabIndex = 42;
+			this->rain->Text = L"rain";
+			this->rain->UseVisualStyleBackColor = true;
+			this->rain->Click += gcnew System::EventHandler(this, &MainForm::rain_Click);
+			// 
+			// autumn
+			// 
+			this->autumn->Location = System::Drawing::Point(530, 142);
+			this->autumn->Name = L"autumn";
+			this->autumn->Size = System::Drawing::Size(75, 23);
+			this->autumn->TabIndex = 41;
+			this->autumn->Text = L"autumn";
+			this->autumn->UseVisualStyleBackColor = true;
+			this->autumn->Click += gcnew System::EventHandler(this, &MainForm::autumn_Click);
+			// 
+			// winter
+			// 
+			this->winter->Location = System::Drawing::Point(448, 142);
+			this->winter->Name = L"winter";
+			this->winter->Size = System::Drawing::Size(75, 23);
+			this->winter->TabIndex = 40;
+			this->winter->Text = L"winter";
+			this->winter->UseVisualStyleBackColor = true;
+			this->winter->Click += gcnew System::EventHandler(this, &MainForm::winter_Click);
+			// 
+			// pictureBoxGirl
+			// 
+			this->pictureBoxGirl->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBoxGirl.Image")));
+			this->pictureBoxGirl->Location = System::Drawing::Point(448, 171);
+			this->pictureBoxGirl->Name = L"pictureBoxGirl";
+			this->pictureBoxGirl->Size = System::Drawing::Size(300, 350);
+			this->pictureBoxGirl->TabIndex = 39;
+			this->pictureBoxGirl->TabStop = false;
 			// 
 			// pictureBox23
 			// 
@@ -831,7 +884,7 @@ namespace pogodynka {
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			this->tabPage1->PerformLayout();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox25))->EndInit();
+			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxGirl))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox22))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox21))->EndInit();
@@ -917,6 +970,64 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	curl_easy_cleanup(hnd);
 	String^ something = gcnew String(readBuffer.c_str());
 	//this->labelCity->Text = header_string;
+}
+	   public: System::Drawing::Image^ getImageFromRes(long resource_ID) {
+		   // Function getImageFromRes
+		   // A function for loading PNG images from resources in C++ CLR/CLI
+		   // Copyright (C) Giuseppe Pischedda 2007 for most code
+		   // and a little part of this code by Bordon and adapted by me for PNG images in C++ CLR/CLI.
+
+		   //Load the resource module:
+		   HMODULE hInst = NULL;
+
+		   // Find the resource using the resource ID from file "resource.h"
+		   HRSRC hResource = ::FindResource(hInst, MAKEINTRESOURCE(resource_ID), L"PNG");
+		   if (!hResource) return nullptr;
+
+		   // Load the resource and save the total size.
+		   DWORD Size = SizeofResource(hInst, hResource);
+		   HGLOBAL MemoryHandle = LoadResource(hInst, hResource);
+		   if (MemoryHandle == NULL) return nullptr;
+
+		   //Create a cli::array of byte with size = total size + 2
+		   cli::array<BYTE>^ MemPtr = gcnew array<BYTE>(Size + 2);
+
+		   //Cast from LPVOID to char *
+		   char* lkr = (char*)(LockResource(MemoryHandle));
+
+		   //Copy from unmanaged memory to managed array
+		   System::Runtime::InteropServices::Marshal::Copy((IntPtr)lkr, MemPtr, 0, Size);
+
+		   // Create a new MemoryStream with size = MemPtr
+		   System::IO::MemoryStream^ stream = gcnew System::IO::MemoryStream(MemPtr);
+
+		   //Write in the MemoryStream
+		   stream->Write(MemPtr, 0, Size);
+
+		   //Set the position for read the stream
+		   stream->Position = 0;
+
+		   //Free allocated resources
+		   FreeLibrary(hInst);
+
+		   //Create an Image abstract class pointer
+		   System::Drawing::Image^ ptrPNG;
+
+		   //Assign the stream to abstract class pointer
+		   ptrPNG = System::Drawing::Image::FromStream(stream);
+		   return ptrPNG;
+	   }
+private: System::Void winter_Click(System::Object^ sender, System::EventArgs^ e) {	
+	pictureBoxGirl->Image = Image::FromFile("assets/winter.png");
+}
+private: System::Void autumn_Click(System::Object^ sender, System::EventArgs^ e) {
+	pictureBoxGirl->Image = Image::FromFile("assets/autumn.png");
+}
+private: System::Void rain_Click(System::Object^ sender, System::EventArgs^ e) {
+	pictureBoxGirl->Image = Image::FromFile("assets/rain.png");
+}
+private: System::Void summer_Click(System::Object^ sender, System::EventArgs^ e) {
+	pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
 }
 };
 }

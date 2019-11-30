@@ -147,6 +147,13 @@
       <DependentUpon>MainForm.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\..\..\Desktop\pog-lib\autumn.png" />
+    <Image Include="..\..\..\..\..\..\Desktop\pog-lib\rain.png" />
+    <Image Include="..\..\..\..\..\..\Desktop\pog-lib\summer.png" />
+    <Image Include="..\..\..\..\..\..\Desktop\pog-lib\winter.png" />
+    <Image Include="winter.bmp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
