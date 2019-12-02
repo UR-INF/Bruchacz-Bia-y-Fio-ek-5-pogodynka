@@ -2,6 +2,12 @@
 #include <curl/curl.h>
 #include <string>
 #include <Windows.h>
+#include "json/json.h"
+#include "rapidjson/document.h"
+#include <algorithm>
+#include <sstream> 
+#include <ctime>
+
 static std::string readBuffer;
 namespace pogodynka {
 
@@ -12,7 +18,12 @@ namespace pogodynka {
 	using namespace System::Windows::Forms;
 	using namespace System::Data;
 	using namespace System::Drawing;
+	using namespace rapidjson;
+	Json::Reader reader;
+	Json::Value root;
+	Json::FastWriter fastWriter;
 
+	Document document;
 	/// <summary>
 	/// Podsumowanie informacji o MainForm
 	/// </summary>
@@ -131,25 +142,25 @@ namespace pogodynka {
 
 	private: System::Windows::Forms::Label^ label3;
 	private: System::Windows::Forms::PictureBox^ pictureBox24;
-private: System::Windows::Forms::PictureBox^ pictureBox27;
-private: System::Windows::Forms::PictureBox^ pictureBox26;
-private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
-private: System::Windows::Forms::PictureBox^ pictureBox28;
-private: System::Windows::Forms::PictureBox^ pictureBox29;
-private: System::Windows::Forms::PictureBox^ pictureBox30;
-private: System::Windows::Forms::Label^ label4;
-private: System::Windows::Forms::Label^ label5;
-private: System::Windows::Forms::PictureBox^ pictureBox31;
-private: System::Windows::Forms::PictureBox^ pictureBox32;
-private: System::Windows::Forms::PictureBox^ pictureBox33;
-private: System::Windows::Forms::PictureBox^ pictureBox34;
-private: System::Windows::Forms::Label^ label6;
-private: System::Windows::Forms::Label^ label7;
-private: System::Windows::Forms::PictureBox^ pictureBox35;
-private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart2;
-private: System::Windows::Forms::Label^ dataLabel;
+	private: System::Windows::Forms::PictureBox^ pictureBox27;
+	private: System::Windows::Forms::PictureBox^ pictureBox26;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart1;
+	private: System::Windows::Forms::PictureBox^ pictureBox28;
+	private: System::Windows::Forms::PictureBox^ pictureBox29;
+	private: System::Windows::Forms::PictureBox^ pictureBox30;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::Label^ label5;
+	private: System::Windows::Forms::PictureBox^ pictureBox31;
+	private: System::Windows::Forms::PictureBox^ pictureBox32;
+	private: System::Windows::Forms::PictureBox^ pictureBox33;
+	private: System::Windows::Forms::PictureBox^ pictureBox34;
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::Label^ label7;
+	private: System::Windows::Forms::PictureBox^ pictureBox35;
+	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart2;
+	private: System::Windows::Forms::Label^ dataLabel;
 
-private: System::Windows::Forms::PictureBox^ pictureBox36;
+	private: System::Windows::Forms::PictureBox^ pictureBox36;
 
 
 
@@ -168,7 +179,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox36;
 		/// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -1277,120 +1288,200 @@ private: System::Windows::Forms::PictureBox^ pictureBox36;
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void tabPage1_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void splitContainer1_Panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
-}
-private: System::Void splitContainer1_Panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void splitContainer1_Panel1_Paint_1(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
-private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void tableLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
-}
+	private: System::Void MainForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void tabPage1_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void splitContainer1_Panel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	private: System::Void dataGridView1_CellContentClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+	}
+	private: System::Void splitContainer1_Panel2_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	private: System::Void splitContainer1_Panel1_Paint_1(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
+	private: System::Void label1_Click_1(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void tableLayoutPanel1_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
+	}
 
-private: System::Void labelCityData_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label1_Click_3(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void labelCityData_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label1_Click_3(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label10_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
 
-private: System::Void labelHumidity_Click(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-}
-private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
-}
+	private: System::Void labelHumidity_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+	}
+	private: System::Void label7_Click(System::Object^ sender, System::EventArgs^ e) {
+	}
 
-	
-private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	CURL* hnd = curl_easy_init();
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
-	curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
-	curl_easy_setopt(hnd, CURLOPT_URL, "https://community-open-weather-map.p.rapidapi.com/weather?callback=test&id=2172797&units=%2522metric%2522&q=Rzeszow");	struct curl_slist* headers = NULL;
-	headers = curl_slist_append(headers, "x-rapidapi-host: community-open-weather-map.p.rapidapi.com");
-	headers = curl_slist_append(headers, "x-rapidapi-key: f90acf6696msh3be9bb78dc5c56ep1a4015jsnb4b983675d4c");
-	curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+		CURL* hnd = curl_easy_init();
 
-	//System::String^ response_string;
-	//System::String^ header_string;
-	std::string readBuffer;
-	curl_easy_setopt(hnd, CURLOPT_WRITEFUNCTION, WriteCallback);
-	curl_easy_setopt(hnd, CURLOPT_WRITEDATA, &readBuffer);
-	//curl_easy_setopt(hnd, CURLOPT_WRITEDATA, response_string);
-	//curl_easy_setopt(hnd, CURLOPT_HEADERDATA, header_string);
+		curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
+		curl_easy_setopt(hnd, CURLOPT_URL, "https://community-open-weather-map.p.rapidapi.com/forecast/daily?q=Rzeszow");	struct curl_slist* headers = NULL;
+		headers = curl_slist_append(headers, "x-rapidapi-host: community-open-weather-map.p.rapidapi.com");
+		headers = curl_slist_append(headers, "x-rapidapi-key: f90acf6696msh3be9bb78dc5c56ep1a4015jsnb4b983675d4c");
+		curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
 
-	CURLcode ret = curl_easy_perform(hnd);
-	curl_easy_cleanup(hnd);
-	String^ something = gcnew String(readBuffer.c_str());
-	//this->labelCity->Text = header_string;
-}
-	   public: System::Drawing::Image^ getImageFromRes(long resource_ID) {
-		   // Function getImageFromRes
-		   // A function for loading PNG images from resources in C++ CLR/CLI
-		   // Copyright (C) Giuseppe Pischedda 2007 for most code
-		   // and a little part of this code by Bordon and adapted by me for PNG images in C++ CLR/CLI.
+		//System::String^ response_string;
+		//System::String^ header_string;
+		std::string readBuffer;
+		curl_easy_setopt(hnd, CURLOPT_WRITEFUNCTION, WriteCallback);
+		curl_easy_setopt(hnd, CURLOPT_WRITEDATA, &readBuffer);
+		//curl_easy_setopt(hnd, CURLOPT_WRITEDATA, response_string);
+		//curl_easy_setopt(hnd, CURLOPT_HEADERDATA, header_string);
 
-		   //Load the resource module:
-		   HMODULE hInst = NULL;
+		CURLcode ret = curl_easy_perform(hnd);
+		curl_easy_cleanup(hnd);
+		String^ something = gcnew String(readBuffer.c_str());
+		reader.parse(readBuffer, root);
 
-		   // Find the resource using the resource ID from file "resource.h"
-		   HRSRC hResource = ::FindResource(hInst, MAKEINTRESOURCE(resource_ID), L"PNG");
-		   if (!hResource) return nullptr;
 
-		   // Load the resource and save the total size.
-		   DWORD Size = SizeofResource(hInst, hResource);
-		   HGLOBAL MemoryHandle = LoadResource(hInst, hResource);
-		   if (MemoryHandle == NULL) return nullptr;
+		//timezone
+		std::string timezone = fastWriter.write(root["city"]["timezone"]).c_str();
+		timezone.erase(std::remove(timezone.begin(), timezone.end(), '\"'));
+		int timezoneInt = std::stoi(timezone);
+		int result = timezoneInt / 3600;
+		std::string jebanyTimezone = (std::to_string(result) + " GMT");
+		this->labelTimezoneData->Text = gcnew String(jebanyTimezone.c_str());
 
-		   //Create a cli::array of byte with size = total size + 2
-		   cli::array<BYTE>^ MemPtr = gcnew array<BYTE>(Size + 2);
+		//wschod
+		std::string sunrise = fastWriter.write(root["list"][0]["sunrise"]).c_str();
+		sunrise.erase(std::remove(sunrise.begin(), sunrise.end(), '\"'));
+		time_t sunriseString = atoi(sunrise.c_str());
+		tm sunriseTime = *localtime(&sunriseString);
+		char bufor[64];
+		strftime(bufor, sizeof(bufor), "%H:%M:%S", &sunriseTime);
+		std::string sunriseResult = ("[container]: \"%s\"\n", bufor);
+		this->labelSunriseData->Text = gcnew String(sunriseResult.c_str());
 
-		   //Cast from LPVOID to char *
-		   char* lkr = (char*)(LockResource(MemoryHandle));
+		//zachod
+		std::string sunset = fastWriter.write(root["list"][0]["sunset"]).c_str();
+		sunset.erase(std::remove(sunset.begin(), sunset.end(), '\"'));
+		time_t sunsetString = atoi(sunset.c_str());
+		tm sunsetTime = *localtime(&sunsetString);
+		char bufor2[64];
+		strftime(bufor, sizeof(bufor), "%H:%M:%S", &sunsetTime);
+		std::string sunsetResult = ("[container]: \"%s\"\n", bufor);
+		this->labelSunsetData->Text = gcnew String(sunsetResult.c_str());
 
-		   //Copy from unmanaged memory to managed array
-		   System::Runtime::InteropServices::Marshal::Copy((IntPtr)lkr, MemPtr, 0, Size);
+		//chmury
+		std::string clouds = fastWriter.write(root["list"][0]["clouds"]).c_str();
+		clouds.erase(std::remove(clouds.begin(), clouds.end(), '\"'));
+		int cloudsUtil = std::stoi(clouds);
+		std::string jebaneChmury = (std::to_string(cloudsUtil) + "%");
+		this->labelVisibilityData->Text = gcnew String(jebaneChmury.c_str());
 
-		   // Create a new MemoryStream with size = MemPtr
-		   System::IO::MemoryStream^ stream = gcnew System::IO::MemoryStream(MemPtr);
+		//cisnienie
+		std::string pressure = fastWriter.write(root["list"][0]["pressure"]).c_str();
+		pressure.erase(std::remove(pressure.begin(), pressure.end(), '\"'));
+		int pressureUtil = std::stoi(pressure);
+		std::string jebanePressure = (std::to_string(pressureUtil) + "Pa");
+		this->labelPressureData->Text = gcnew String(jebanePressure.c_str());
 
-		   //Write in the MemoryStream
-		   stream->Write(MemPtr, 0, Size);
+		//temperatura
+		std::string temp = fastWriter.write(root["list"][0]["temp"]["day"]).c_str();
+		temp.erase(std::remove(temp.begin(), temp.end(), '\"'));
+		int tempInt = std::stoi(temp) - 272;
+		this->labelTempData->Text = gcnew String(std::to_string(tempInt).c_str());
 
-		   //Set the position for read the stream
-		   stream->Position = 0;
+		//wilgotnosc
+		std::string humidity = fastWriter.write(root["list"][0]["humidity"]).c_str();
+		humidity.erase(std::remove(humidity.begin(), humidity.end(), '\"'));
+		int humidityUtil = std::stoi(humidity);
+		std::string jebaneHumidity = (std::to_string(humidityUtil) + "%");
+		this->labelHumidityData->Text = gcnew String(jebaneHumidity.c_str());
 
-		   //Free allocated resources
-		   FreeLibrary(hInst);
+		//wiatr
+		std::string wind = fastWriter.write(root["list"][0]["speed"]).c_str();
+		wind.erase(std::remove(wind.begin(), wind.end(), '\"'));
+		int windInt = std::stoi(wind);
+		std::string jebanyWind = (std::to_string(windInt) + "km/h");
+		this->labelWindData->Text = gcnew String(jebanyWind.c_str());
 
-		   //Create an Image abstract class pointer
-		   System::Drawing::Image^ ptrPNG;
+		//min temp
+		std::string minTemp = fastWriter.write(root["list"][0]["temp"]["min"]).c_str();
+		minTemp.erase(std::remove(minTemp.begin(), minTemp.end(), '\"'));
+		int minTempInt = std::stoi(minTemp) - 272;
+		this->labelMinTempData->Text = gcnew String(std::to_string(minTempInt).c_str());
 
-		   //Assign the stream to abstract class pointer
-		   ptrPNG = System::Drawing::Image::FromStream(stream);
-		   return ptrPNG;
-	   }
-private: System::Void winter_Click(System::Object^ sender, System::EventArgs^ e) {	
-	pictureBoxGirl->Image = Image::FromFile("assets/winter.png");
-}
-private: System::Void autumn_Click(System::Object^ sender, System::EventArgs^ e) {
-	pictureBoxGirl->Image = Image::FromFile("assets/autumn.png");
-}
-private: System::Void rain_Click(System::Object^ sender, System::EventArgs^ e) {
-	pictureBoxGirl->Image = Image::FromFile("assets/rain.png");
-}
-private: System::Void summer_Click(System::Object^ sender, System::EventArgs^ e) {
-	pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
-}
-};
+		//maxtemp
+		std::string maxTemp = fastWriter.write(root["list"][0]["temp"]["max"]).c_str();
+		maxTemp.erase(std::remove(maxTemp.begin(), maxTemp.end(), '\"'));
+		int maxTempInt = std::stoi(maxTemp) - 272;
+		this->labelMaxTempData->Text = gcnew String(std::to_string(maxTempInt).c_str());
+
+
+	}
+
+
+
+	public: System::Drawing::Image^ getImageFromRes(long resource_ID) {
+		// Function getImageFromRes
+		// A function for loading PNG images from resources in C++ CLR/CLI
+		// Copyright (C) Giuseppe Pischedda 2007 for most code
+		// and a little part of this code by Bordon and adapted by me for PNG images in C++ CLR/CLI.
+
+		//Load the resource module:
+		HMODULE hInst = NULL;
+
+		// Find the resource using the resource ID from file "resource.h"
+		HRSRC hResource = ::FindResource(hInst, MAKEINTRESOURCE(resource_ID), L"PNG");
+		if (!hResource) return nullptr;
+
+		// Load the resource and save the total size.
+		DWORD Size = SizeofResource(hInst, hResource);
+		HGLOBAL MemoryHandle = LoadResource(hInst, hResource);
+		if (MemoryHandle == NULL) return nullptr;
+
+		//Create a cli::array of byte with size = total size + 2
+		cli::array<BYTE>^ MemPtr = gcnew array<BYTE>(Size + 2);
+
+		//Cast from LPVOID to char *
+		char* lkr = (char*)(LockResource(MemoryHandle));
+
+		//Copy from unmanaged memory to managed array
+		System::Runtime::InteropServices::Marshal::Copy((IntPtr)lkr, MemPtr, 0, Size);
+
+		// Create a new MemoryStream with size = MemPtr
+		System::IO::MemoryStream^ stream = gcnew System::IO::MemoryStream(MemPtr);
+
+		//Write in the MemoryStream
+		stream->Write(MemPtr, 0, Size);
+
+		//Set the position for read the stream
+		stream->Position = 0;
+
+		//Free allocated resources
+		FreeLibrary(hInst);
+
+		//Create an Image abstract class pointer
+		System::Drawing::Image^ ptrPNG;
+
+		//Assign the stream to abstract class pointer
+		ptrPNG = System::Drawing::Image::FromStream(stream);
+		return ptrPNG;
+	}
+	private: System::Void winter_Click(System::Object^ sender, System::EventArgs^ e) {
+		pictureBoxGirl->Image = Image::FromFile("assets/winter.png");
+	}
+	private: System::Void autumn_Click(System::Object^ sender, System::EventArgs^ e) {
+		pictureBoxGirl->Image = Image::FromFile("assets/autumn.png");
+	}
+	private: System::Void rain_Click(System::Object^ sender, System::EventArgs^ e) {
+		pictureBoxGirl->Image = Image::FromFile("assets/rain.png");
+	}
+	private: System::Void summer_Click(System::Object^ sender, System::EventArgs^ e) {
+		pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
+	}
+	};
 }
