@@ -8,6 +8,7 @@
 #include <sstream> 
 #include <ctime>
 #include <msclr\marshal_cppstd.h>
+#include <chrono>
 
 
 static std::string readBuffer;
@@ -42,6 +43,8 @@ namespace pogodynka {
 
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
+		static int timezoneForTimer = 1;
+	
 	public:
 		MainForm(void)
 		{
@@ -49,6 +52,7 @@ namespace pogodynka {
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
+			
 		}
 
 
@@ -109,7 +113,7 @@ namespace pogodynka {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::TabPage^ tabPage3;
-	private: System::Windows::Forms::PictureBox^ pictureBox2;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox12;
 	private: System::Windows::Forms::PictureBox^ pictureBox11;
@@ -161,9 +165,10 @@ namespace pogodynka {
 	private: System::Windows::Forms::PictureBox^ pictureBox35;
 	private: System::Windows::Forms::DataVisualization::Charting::Chart^ chart2;
 	private: System::Windows::Forms::Label^ dataLabel;
-
 	private: System::Windows::Forms::PictureBox^ pictureBox36;
 private: System::Windows::Forms::PictureBox^ pictureBox37;
+private: System::Windows::Forms::Timer^ timer1;
+private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -182,7 +187,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 		/// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -191,6 +196,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
@@ -243,7 +249,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->labelSunset = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->labelSunrise = (gcnew System::Windows::Forms::Label());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->labelTimezone = (gcnew System::Windows::Forms::Label());
@@ -273,6 +278,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox35 = (gcnew System::Windows::Forms::PictureBox());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox37))->BeginInit();
@@ -298,7 +304,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->tabPage2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
@@ -394,7 +399,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->tabPage1->Controls->Add(this->labelSunset);
 			this->tabPage1->Controls->Add(this->label1);
 			this->tabPage1->Controls->Add(this->labelSunrise);
-			this->tabPage1->Controls->Add(this->pictureBox2);
 			this->tabPage1->Controls->Add(this->pictureBox1);
 			this->tabPage1->Controls->Add(this->textBox1);
 			this->tabPage1->Controls->Add(this->labelTimezone);
@@ -847,15 +851,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->labelSunrise->Text = L"Wschód";
 			this->labelSunrise->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(396, 22);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(82, 108);
-			this->pictureBox2->TabIndex = 5;
-			this->pictureBox2->TabStop = false;
-			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
@@ -930,7 +925,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::EarthTones;
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
+			series1->Name = L"Temperatura [°C]";
 			this->chart1->Series->Add(series1);
 			this->chart1->Size = System::Drawing::Size(754, 379);
 			this->chart1->TabIndex = 35;
@@ -1010,7 +1005,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage3->Size = System::Drawing::Size(866, 574);
 			this->tabPage3->TabIndex = 2;
-			this->tabPage3->Text = L"Opady 7 dni";
+			this->tabPage3->Text = L"Wilgotność 7 dni";
 			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
 			// chart2
@@ -1023,7 +1018,7 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->chart2->Name = L"chart2";
 			series2->ChartArea = L"ChartArea1";
 			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
+			series2->Name = L"Wilgotność [%]";
 			this->chart2->Series->Add(series2);
 			this->chart2->Size = System::Drawing::Size(754, 379);
 			this->chart2->TabIndex = 41;
@@ -1114,13 +1109,14 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->dataLabel->AutoSize = true;
 			this->dataLabel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->dataLabel->Font = (gcnew System::Drawing::Font(L"Arial Black", 70, System::Drawing::FontStyle::Bold));
+			this->dataLabel->Font = (gcnew System::Drawing::Font(L"Arial Black", 49, System::Drawing::FontStyle::Bold));
 			this->dataLabel->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->dataLabel->Location = System::Drawing::Point(196, 252);
+			this->dataLabel->Location = System::Drawing::Point(174, 277);
 			this->dataLabel->Name = L"dataLabel";
-			this->dataLabel->Size = System::Drawing::Size(400, 132);
+			this->dataLabel->Size = System::Drawing::Size(436, 93);
 			this->dataLabel->TabIndex = 48;
-			this->dataLabel->Text = L"14 : 28";
+			this->dataLabel->Text = L"14 : 28 : 33";
+			this->dataLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// pictureBox36
 			// 
@@ -1191,6 +1187,11 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			this->pictureBox35->TabIndex = 41;
 			this->pictureBox35->TabStop = false;
 			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MainForm::timer1_Tick);
+			// 
 			// MainForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -1227,7 +1228,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->tabPage2->ResumeLayout(false);
 			this->tabPage2->PerformLayout();
@@ -1363,16 +1363,39 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 
 				int tempList[7];
 				int humidityList[7];
+				std::string dayList[7];
+
+				this->chart2->Series["Wilgotność [%]"]->Points->Clear();
+				this->chart1->Series["Temperatura [°C]"]->Points->Clear();
 
 				for (int i = 0; i <= 6; i++) {
+
+					std::string dt = fastWriter.write(root["list"][i]["dt"]).c_str();
+					dt.erase(std::remove(dt.begin(), dt.end(), '\"'));
+					time_t dtString = atoi(dt.c_str());
+					tm dtTime = *localtime(&dtString);
+					char bufor[64];
+					strftime(bufor, sizeof(bufor), "%d.%m", &dtTime);
+					std::string dtResult = ("[container]: \"%s\"\n", bufor);
+					dayList[i] = dtResult;
+
 					std::string x = fastWriter.write(root["list"][i]["temp"]["day"]).c_str();
 					x.erase(std::remove(x.begin(), x.end(), '\"'));
 					tempList[i] = std::stoi(x) - 272;
+					this->chart1->Series["Temperatura [°C]"]->Points->AddXY(gcnew String(dayList[i].c_str()), tempList[i]);
 
 					std::string y = fastWriter.write(root["list"][i]["humidity"]).c_str();
 					y.erase(std::remove(y.begin(), y.end(), '\"'));
-					humidityList[i] = std::stoi(y) - 272;
+					humidityList[i] = std::stoi(y);
+					this->chart2->Series["Wilgotność [%]"]->Points->AddXY(gcnew String(dayList[i].c_str()), humidityList[i]);
+
 				}
+				// Ustawienie miasta
+				this->label2->Text = this->textBox1->Text;
+				this->label4->Text = this->textBox1->Text;
+				this->label6->Text = this->textBox1->Text;
+
+
 				std::string main1 = fastWriter.write(root["list"][0]["weather"][0]["main"]);
 				main1.erase(std::remove(main1.begin(), main1.end(), '\"'));
 				const char* snow1 = "Snow";
@@ -1560,16 +1583,39 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 
 			int tempList[7];
 			int humidityList[7];
+			std::string dayList[7];
+
+			this->chart2->Series["Wilgotność [%]"]->Points->Clear();
+			this->chart1->Series["Temperatura [°C]"]->Points->Clear();
 
 			for (int i = 0; i <= 6; i++) {
+
+				std::string dt = fastWriter.write(root["list"][i]["dt"]).c_str();
+				dt.erase(std::remove(dt.begin(), dt.end(), '\"'));
+				time_t dtString = atoi(dt.c_str());
+				tm dtTime = *localtime(&dtString);
+				char bufor[64];
+				strftime(bufor, sizeof(bufor), "%d.%m", &dtTime);
+				std::string dtResult = ("[container]: \"%s\"\n", bufor);
+				dayList[i] = dtResult;
+
 				std::string x = fastWriter.write(root["list"][i]["temp"]["day"]).c_str();
 				x.erase(std::remove(x.begin(), x.end(), '\"'));
 				tempList[i] = std::stoi(x) - 272;
+				this->chart1->Series["Temperatura [°C]"]->Points->AddXY(gcnew String(dayList[i].c_str()), tempList[i]);
 
 				std::string y = fastWriter.write(root["list"][i]["humidity"]).c_str();
 				y.erase(std::remove(y.begin(), y.end(), '\"'));
-				humidityList[i] = std::stoi(y) - 272;
+				humidityList[i] = std::stoi(y);
+				this->chart2->Series["Wilgotność [%]"]->Points->AddXY(gcnew String(dayList[i].c_str()), humidityList[i]);
+
 			}
+			// Ustawienie miasta
+			this->label2->Text = this->textBox1->Text;
+			this->label4->Text = this->textBox1->Text;
+			this->label6->Text = this->textBox1->Text;
+
+
 			std::string main1 = fastWriter.write(root["list"][0]["weather"][0]["main"]);
 			main1.erase(std::remove(main1.begin(), main1.end(), '\"'));
 			const char* snow1 = "Snow";
@@ -1606,7 +1652,6 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
  else {
  MessageBox::Show("Źle wpisane miasto", "Błąd");
 }
-		
 	}
 
 
@@ -1700,5 +1745,23 @@ private: System::Windows::Forms::PictureBox^ pictureBox37;
 	private: System::Void summer_Click(System::Object^ sender, System::EventArgs^ e) {
 		pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
 	}
-	};
+	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+		// Czas
+		time_t time = std::time(0);
+		std::tm* now = std::localtime(&time);
+		int hourInt = now->tm_hour + timezoneForTimer - 1;
+		if (hourInt >= 24) {
+			hourInt -=24;
+		}
+		std::string hour = std::string(2 - std::to_string(hourInt).length(), '0') + std::to_string(hourInt);
+		std::string min = std::string(2 - std::to_string(now->tm_min).length(), '0') + std::to_string(now->tm_min);
+		std::string sec = std::string(2 - std::to_string(now->tm_sec).length(), '0') + std::to_string(now->tm_sec);
+
+		
+		
+
+		this->dataLabel->Text = gcnew String(hour.c_str()) + " : " + gcnew String(min.c_str()) + " : " + gcnew String(sec.c_str());
+	}
+};
 }
