@@ -52,7 +52,188 @@ namespace pogodynka {
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
-			
+			CURL* hnd = curl_easy_init();
+
+			curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
+			char linkChar[1100];
+			std::string linkString = "https://community-open-weather-map.p.rapidapi.com/forecast/daily?";
+			linkString.append(params_string({ {"q",toStandardString(this->textBox1->Text) }
+				}));
+			strcpy(linkChar, linkString.c_str());
+			curl_easy_setopt(hnd, CURLOPT_URL, linkChar);
+
+			struct curl_slist* headers = NULL;
+			headers = curl_slist_append(headers, "x-rapidapi-host: community-open-weather-map.p.rapidapi.com");
+			headers = curl_slist_append(headers, "x-rapidapi-key: f90acf6696msh3be9bb78dc5c56ep1a4015jsnb4b983675d4c");
+			curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
+
+			//System::String^ response_string;
+			//System::String^ header_string;
+			std::string readBuffer;
+			//curl_easy_setopt(hnd, CURLOPT_WRITEDATA, response_string);
+			//curl_easy_setopt(hnd, CURLOPT_HEADERDATA, header_string);
+			curl_easy_setopt(hnd, CURLOPT_WRITEFUNCTION, WriteCallback);
+			curl_easy_setopt(hnd, CURLOPT_WRITEDATA, &readBuffer);
+
+			CURLcode ret = curl_easy_perform(hnd);
+			curl_easy_cleanup(hnd);
+			String^ something = gcnew String(readBuffer.c_str());
+			reader.parse(readBuffer, root);
+
+			std::string code = fastWriter.write(root["cod"]);
+			code.erase(std::remove(code.begin(), code.end(), '\"'));
+			int codeInt = std::stoi(code);
+			if (codeInt == 200) {
+				//timezone
+				std::string timezone = fastWriter.write(root["city"]["timezone"]).c_str();
+				timezone.erase(std::remove(timezone.begin(), timezone.end(), '\"'));
+				int timezoneInt = std::stoi(timezone);
+				int result = timezoneInt / 3600;
+				timezoneForTimer = result;
+				std::string resultTimezone = (std::to_string(result) + " GMT");
+				this->labelTimezoneData->Text = gcnew String(resultTimezone.c_str());
+
+				//wschod
+				std::string sunrise = fastWriter.write(root["list"][0]["sunrise"]).c_str();
+				sunrise.erase(std::remove(sunrise.begin(), sunrise.end(), '\"'));
+				time_t sunriseString = atoi(sunrise.c_str());
+				tm sunriseTime = *localtime(&sunriseString);
+				char bufor[64];
+				strftime(bufor, sizeof(bufor), "%H:%M:%S", &sunriseTime);
+				std::string sunriseResult = ("[container]: \"%s\"\n", bufor);
+				this->labelSunriseData->Text = gcnew String(sunriseResult.c_str());
+
+				//zachod
+				std::string sunset = fastWriter.write(root["list"][0]["sunset"]).c_str();
+				sunset.erase(std::remove(sunset.begin(), sunset.end(), '\"'));
+				time_t sunsetString = atoi(sunset.c_str());
+				tm sunsetTime = *localtime(&sunsetString);
+				char bufor2[64];
+				strftime(bufor, sizeof(bufor), "%H:%M:%S", &sunsetTime);
+				std::string sunsetResult = ("[container]: \"%s\"\n", bufor);
+				this->labelSunsetData->Text = gcnew String(sunsetResult.c_str());
+
+				//chmury
+				std::string clouds = fastWriter.write(root["list"][0]["clouds"]).c_str();
+				clouds.erase(std::remove(clouds.begin(), clouds.end(), '\"'));
+				int cloudsUtil = std::stoi(clouds);
+				std::string resultChmury = (std::to_string(cloudsUtil) + "%");
+				this->labelVisibilityData->Text = gcnew String(resultChmury.c_str());
+
+				//cisnienie
+				std::string pressure = fastWriter.write(root["list"][0]["pressure"]).c_str();
+				pressure.erase(std::remove(pressure.begin(), pressure.end(), '\"'));
+				int pressureUtil = std::stoi(pressure);
+				std::string resultPressure = (std::to_string(pressureUtil) + "Pa");
+				this->labelPressureData->Text = gcnew String(resultPressure.c_str());
+
+				//temperatura
+				std::string temp = fastWriter.write(root["list"][0]["temp"]["day"]).c_str();
+				temp.erase(std::remove(temp.begin(), temp.end(), '\"'));
+				int tempInt = std::stoi(temp) - 272;
+				std::string resultTemp = (std::to_string(tempInt) + "°C");
+
+				this->labelTempData->Text = gcnew String(resultTemp.c_str());
+
+				//wilgotnosc
+				std::string humidity = fastWriter.write(root["list"][0]["humidity"]).c_str();
+				humidity.erase(std::remove(humidity.begin(), humidity.end(), '\"'));
+				int humidityUtil = std::stoi(humidity);
+				std::string resultHumidity = (std::to_string(humidityUtil) + "%");
+				this->labelHumidityData->Text = gcnew String(resultHumidity.c_str());
+
+				//wiatr
+				std::string wind = fastWriter.write(root["list"][0]["speed"]).c_str();
+				wind.erase(std::remove(wind.begin(), wind.end(), '\"'));
+				int windInt = std::stoi(wind);
+				std::string resultWind = (std::to_string(windInt) + "km/h");
+				this->labelWindData->Text = gcnew String(resultWind.c_str());
+
+				//min temp
+				std::string minTemp = fastWriter.write(root["list"][0]["temp"]["min"]).c_str();
+				minTemp.erase(std::remove(minTemp.begin(), minTemp.end(), '\"'));
+				int minTempInt = std::stoi(minTemp) - 272;
+				std::string resultMinTemp = (std::to_string(minTempInt) + "°C");
+				this->labelMinTempData->Text = gcnew String(resultMinTemp.c_str());
+
+				//maxtemp
+				std::string maxTemp = fastWriter.write(root["list"][0]["temp"]["max"]).c_str();
+				maxTemp.erase(std::remove(maxTemp.begin(), maxTemp.end(), '\"'));
+				int maxTempInt = std::stoi(maxTemp) - 272;
+				std::string resultMaxTemp = (std::to_string(maxTempInt) + "°C");
+				this->labelMaxTempData->Text = gcnew String(resultMaxTemp.c_str());
+
+				int tempList[7];
+				int humidityList[7];
+				std::string dayList[7];
+
+				this->chart2->Series["Wilgotność [%]"]->Points->Clear();
+				this->chart1->Series["Temperatura [°C]"]->Points->Clear();
+
+				for (int i = 0; i <= 6; i++) {
+
+					std::string dt = fastWriter.write(root["list"][i]["dt"]).c_str();
+					dt.erase(std::remove(dt.begin(), dt.end(), '\"'));
+					time_t dtString = atoi(dt.c_str());
+					tm dtTime = *localtime(&dtString);
+					char bufor[64];
+					strftime(bufor, sizeof(bufor), "%d.%m", &dtTime);
+					std::string dtResult = ("[container]: \"%s\"\n", bufor);
+					dayList[i] = dtResult;
+
+					std::string x = fastWriter.write(root["list"][i]["temp"]["day"]).c_str();
+					x.erase(std::remove(x.begin(), x.end(), '\"'));
+					tempList[i] = std::stoi(x) - 272;
+					this->chart1->Series["Temperatura [°C]"]->Points->AddXY(gcnew String(dayList[i].c_str()), tempList[i]);
+
+					std::string y = fastWriter.write(root["list"][i]["humidity"]).c_str();
+					y.erase(std::remove(y.begin(), y.end(), '\"'));
+					humidityList[i] = std::stoi(y);
+					this->chart2->Series["Wilgotność [%]"]->Points->AddXY(gcnew String(dayList[i].c_str()), humidityList[i]);
+
+				}
+				// Ustawienie miasta
+				this->label2->Text = this->textBox1->Text;
+				this->label4->Text = this->textBox1->Text;
+				this->label6->Text = this->textBox1->Text;
+
+
+				std::string main1 = fastWriter.write(root["list"][0]["weather"][0]["main"]);
+				main1.erase(std::remove(main1.begin(), main1.end(), '\"'));
+				const char* snow1 = "Snow";
+				std::string snow = "Snow";
+				char s[] = "S";
+				char r[] = "R";
+				if (main1[0] == s[0]) {
+					pictureBox37->Image = Image::FromFile("assets/winter2.png");
+
+				}
+				else if (main1[0] == r[0]) {
+					pictureBox37->Image = Image::FromFile("assets/parasol.png");
+
+				}
+
+				if (tempInt < 2) {
+					pictureBoxGirl->Image = Image::FromFile("assets/winter.png");
+				}
+				else if (tempInt >= 2 && tempInt < 15) {
+					pictureBoxGirl->Image = Image::FromFile("assets/autumn.png");
+				}
+				else if (tempInt >= 15 && tempInt < 25) {
+					pictureBoxGirl->Image = Image::FromFile("assets/spring.png");
+
+				}
+				else {
+					pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
+					if (main1 != "Rain") {
+						pictureBox37->Image = Image::FromFile("assets/summer2.png");
+					}
+
+				}
+			}
+			else {
+				MessageBox::Show("Źle wpisane miasto", "Błąd");
+			}
 		}
 
 
@@ -198,12 +379,12 @@ private: System::ComponentModel::IContainer^ components;
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
-			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea2 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
-			System::Windows::Forms::DataVisualization::Charting::Legend^ legend2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
-			System::Windows::Forms::DataVisualization::Charting::Series^ series2 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea7 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend7 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series7 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
+			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea8 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
+			System::Windows::Forms::DataVisualization::Charting::Legend^ legend8 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
+			System::Windows::Forms::DataVisualization::Charting::Series^ series8 = (gcnew System::Windows::Forms::DataVisualization::Charting::Series());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->tabControl1 = (gcnew System::Windows::Forms::TabControl());
 			this->tabPage1 = (gcnew System::Windows::Forms::TabPage());
@@ -337,7 +518,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->button1->ForeColor = System::Drawing::Color::White;
 			this->button1->Location = System::Drawing::Point(490, 100);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(257, 25);
+			this->button1->Size = System::Drawing::Size(310, 25);
 			this->button1->TabIndex = 0;
 			this->button1->Text = L"Sprawdź";
 			this->button1->UseVisualStyleBackColor = false;
@@ -415,9 +596,9 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			// pictureBox37
 			// 
-			this->pictureBox37->Location = System::Drawing::Point(698, 132);
+			this->pictureBox37->Location = System::Drawing::Point(709, 161);
 			this->pictureBox37->Name = L"pictureBox37";
-			this->pictureBox37->Size = System::Drawing::Size(143, 157);
+			this->pictureBox37->Size = System::Drawing::Size(132, 128);
 			this->pictureBox37->TabIndex = 40;
 			this->pictureBox37->TabStop = false;
 			// 
@@ -830,12 +1011,12 @@ private: System::ComponentModel::IContainer^ components;
 			// label1
 			// 
 			this->label1->AutoSize = true;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 20, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 26.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(238)));
 			this->label1->ForeColor = System::Drawing::SystemColors::HotTrack;
-			this->label1->Location = System::Drawing::Point(501, 29);
+			this->label1->Location = System::Drawing::Point(503, 22);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(237, 31);
+			this->label1->Size = System::Drawing::Size(297, 39);
 			this->label1->TabIndex = 6;
 			this->label1->Text = L"Twoja lokalizacja";
 			// 
@@ -866,7 +1047,7 @@ private: System::ComponentModel::IContainer^ components;
 				static_cast<System::Byte>(238)));
 			this->textBox1->Location = System::Drawing::Point(528, 70);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(219, 23);
+			this->textBox1->Size = System::Drawing::Size(272, 23);
 			this->textBox1->TabIndex = 3;
 			this->textBox1->Text = L"Rzeszow";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
@@ -916,17 +1097,17 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			// chart1
 			// 
-			chartArea1->Name = L"ChartArea1";
-			this->chart1->ChartAreas->Add(chartArea1);
-			legend1->Name = L"Legend1";
-			this->chart1->Legends->Add(legend1);
+			chartArea7->Name = L"ChartArea1";
+			this->chart1->ChartAreas->Add(chartArea7);
+			legend7->Name = L"Legend1";
+			this->chart1->Legends->Add(legend7);
 			this->chart1->Location = System::Drawing::Point(14, 148);
 			this->chart1->Name = L"chart1";
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::EarthTones;
-			series1->ChartArea = L"ChartArea1";
-			series1->Legend = L"Legend1";
-			series1->Name = L"Temperatura [°C]";
-			this->chart1->Series->Add(series1);
+			series7->ChartArea = L"ChartArea1";
+			series7->Legend = L"Legend1";
+			series7->Name = L"Temperatura [°C]";
+			this->chart1->Series->Add(series7);
 			this->chart1->Size = System::Drawing::Size(754, 379);
 			this->chart1->TabIndex = 35;
 			this->chart1->Text = L"chart1";
@@ -1003,23 +1184,23 @@ private: System::ComponentModel::IContainer^ components;
 			this->tabPage3->Location = System::Drawing::Point(4, 22);
 			this->tabPage3->Name = L"tabPage3";
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage3->Size = System::Drawing::Size(866, 574);
+			this->tabPage3->Size = System::Drawing::Size(844, 574);
 			this->tabPage3->TabIndex = 2;
 			this->tabPage3->Text = L"Wilgotność 7 dni";
 			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
 			// chart2
 			// 
-			chartArea2->Name = L"ChartArea1";
-			this->chart2->ChartAreas->Add(chartArea2);
-			legend2->Name = L"Legend1";
-			this->chart2->Legends->Add(legend2);
+			chartArea8->Name = L"ChartArea1";
+			this->chart2->ChartAreas->Add(chartArea8);
+			legend8->Name = L"Legend1";
+			this->chart2->Legends->Add(legend8);
 			this->chart2->Location = System::Drawing::Point(14, 148);
 			this->chart2->Name = L"chart2";
-			series2->ChartArea = L"ChartArea1";
-			series2->Legend = L"Legend1";
-			series2->Name = L"Wilgotność [%]";
-			this->chart2->Series->Add(series2);
+			series8->ChartArea = L"ChartArea1";
+			series8->Legend = L"Legend1";
+			series8->Name = L"Wilgotność [%]";
+			this->chart2->Series->Add(series8);
 			this->chart2->Size = System::Drawing::Size(754, 379);
 			this->chart2->TabIndex = 41;
 			this->chart2->Text = L"chart2";
@@ -1099,7 +1280,7 @@ private: System::ComponentModel::IContainer^ components;
 			this->tabPage4->Location = System::Drawing::Point(4, 22);
 			this->tabPage4->Name = L"tabPage4";
 			this->tabPage4->Padding = System::Windows::Forms::Padding(3);
-			this->tabPage4->Size = System::Drawing::Size(832, 574);
+			this->tabPage4->Size = System::Drawing::Size(844, 574);
 			this->tabPage4->TabIndex = 3;
 			this->tabPage4->Text = L"Zegar";
 			this->tabPage4->UseVisualStyleBackColor = true;
@@ -1196,7 +1377,7 @@ private: System::ComponentModel::IContainer^ components;
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(851, 561);
+			this->ClientSize = System::Drawing::Size(850, 557);
 			this->Controls->Add(this->tabControl1);
 			this->Name = L"MainForm";
 			this->Text = L"Pogodynka";
@@ -1204,7 +1385,6 @@ private: System::ComponentModel::IContainer^ components;
 			this->tabControl1->ResumeLayout(false);
 			this->tabPage1->ResumeLayout(false);
 			this->tabPage1->PerformLayout();
-			
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox37))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxGirl))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox23))->EndInit();
@@ -1251,188 +1431,7 @@ private: System::ComponentModel::IContainer^ components;
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox34))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox35))->EndInit();
 			this->ResumeLayout(false);
-			CURL* hnd = curl_easy_init();
 
-			curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET");
-			char linkChar[1100];
-			std::string linkString = "https://community-open-weather-map.p.rapidapi.com/forecast/daily?";
-			linkString.append(params_string({ {"q",toStandardString(this->textBox1->Text) }
-				}));
-			strcpy(linkChar, linkString.c_str());
-			curl_easy_setopt(hnd, CURLOPT_URL, linkChar);
-
-			struct curl_slist* headers = NULL;
-			headers = curl_slist_append(headers, "x-rapidapi-host: community-open-weather-map.p.rapidapi.com");
-			headers = curl_slist_append(headers, "x-rapidapi-key: f90acf6696msh3be9bb78dc5c56ep1a4015jsnb4b983675d4c");
-			curl_easy_setopt(hnd, CURLOPT_HTTPHEADER, headers);
-
-			//System::String^ response_string;
-			//System::String^ header_string;
-			std::string readBuffer;
-			//curl_easy_setopt(hnd, CURLOPT_WRITEDATA, response_string);
-			//curl_easy_setopt(hnd, CURLOPT_HEADERDATA, header_string);
-			curl_easy_setopt(hnd, CURLOPT_WRITEFUNCTION, WriteCallback);
-			curl_easy_setopt(hnd, CURLOPT_WRITEDATA, &readBuffer);
-
-			CURLcode ret = curl_easy_perform(hnd);
-			curl_easy_cleanup(hnd);
-			String^ something = gcnew String(readBuffer.c_str());
-			reader.parse(readBuffer, root);
-
-			std::string code = fastWriter.write(root["cod"]);
-			code.erase(std::remove(code.begin(), code.end(), '\"'));
-			int codeInt = std::stoi(code);
-			if (codeInt == 200) {
-				//timezone
-				std::string timezone = fastWriter.write(root["city"]["timezone"]).c_str();
-				timezone.erase(std::remove(timezone.begin(), timezone.end(), '\"'));
-				int timezoneInt = std::stoi(timezone);
-				int result = timezoneInt / 3600;
-				timezoneForTimer = result;
-				std::string resultTimezone = (std::to_string(result) + " GMT");
-				this->labelTimezoneData->Text = gcnew String(resultTimezone.c_str());
-
-				//wschod
-				std::string sunrise = fastWriter.write(root["list"][0]["sunrise"]).c_str();
-				sunrise.erase(std::remove(sunrise.begin(), sunrise.end(), '\"'));
-				time_t sunriseString = atoi(sunrise.c_str());
-				tm sunriseTime = *localtime(&sunriseString);
-				char bufor[64];
-				strftime(bufor, sizeof(bufor), "%H:%M:%S", &sunriseTime);
-				std::string sunriseResult = ("[container]: \"%s\"\n", bufor);
-				this->labelSunriseData->Text = gcnew String(sunriseResult.c_str());
-
-				//zachod
-				std::string sunset = fastWriter.write(root["list"][0]["sunset"]).c_str();
-				sunset.erase(std::remove(sunset.begin(), sunset.end(), '\"'));
-				time_t sunsetString = atoi(sunset.c_str());
-				tm sunsetTime = *localtime(&sunsetString);
-				char bufor2[64];
-				strftime(bufor, sizeof(bufor), "%H:%M:%S", &sunsetTime);
-				std::string sunsetResult = ("[container]: \"%s\"\n", bufor);
-				this->labelSunsetData->Text = gcnew String(sunsetResult.c_str());
-
-				//chmury
-				std::string clouds = fastWriter.write(root["list"][0]["clouds"]).c_str();
-				clouds.erase(std::remove(clouds.begin(), clouds.end(), '\"'));
-				int cloudsUtil = std::stoi(clouds);
-				std::string resultChmury = (std::to_string(cloudsUtil) + "%");
-				this->labelVisibilityData->Text = gcnew String(resultChmury.c_str());
-
-				//cisnienie
-				std::string pressure = fastWriter.write(root["list"][0]["pressure"]).c_str();
-				pressure.erase(std::remove(pressure.begin(), pressure.end(), '\"'));
-				int pressureUtil = std::stoi(pressure);
-				std::string resultPressure = (std::to_string(pressureUtil) + "Pa");
-				this->labelPressureData->Text = gcnew String(resultPressure.c_str());
-
-				//temperatura
-				std::string temp = fastWriter.write(root["list"][0]["temp"]["day"]).c_str();
-				temp.erase(std::remove(temp.begin(), temp.end(), '\"'));
-				int tempInt = std::stoi(temp) - 272;
-				std::string resultTemp = (std::to_string(tempInt) + "°C");
-
-				this->labelTempData->Text = gcnew String(resultTemp.c_str());
-
-				//wilgotnosc
-				std::string humidity = fastWriter.write(root["list"][0]["humidity"]).c_str();
-				humidity.erase(std::remove(humidity.begin(), humidity.end(), '\"'));
-				int humidityUtil = std::stoi(humidity);
-				std::string resultHumidity = (std::to_string(humidityUtil) + "%");
-				this->labelHumidityData->Text = gcnew String(resultHumidity.c_str());
-
-				//wiatr
-				std::string wind = fastWriter.write(root["list"][0]["speed"]).c_str();
-				wind.erase(std::remove(wind.begin(), wind.end(), '\"'));
-				int windInt = std::stoi(wind);
-				std::string resultWind = (std::to_string(windInt) + "km/h");
-				this->labelWindData->Text = gcnew String(resultWind.c_str());
-
-				//min temp
-				std::string minTemp = fastWriter.write(root["list"][0]["temp"]["min"]).c_str();
-				minTemp.erase(std::remove(minTemp.begin(), minTemp.end(), '\"'));
-				int minTempInt = std::stoi(minTemp) - 272;
-				std::string resultMinTemp = (std::to_string(minTempInt) + "°C");
-				this->labelMinTempData->Text = gcnew String(resultMinTemp.c_str());
-
-				//maxtemp
-				std::string maxTemp = fastWriter.write(root["list"][0]["temp"]["max"]).c_str();
-				maxTemp.erase(std::remove(maxTemp.begin(), maxTemp.end(), '\"'));
-				int maxTempInt = std::stoi(maxTemp) - 272;
-				std::string resultMaxTemp = (std::to_string(maxTempInt) + "°C");
-				this->labelMaxTempData->Text = gcnew String(resultMaxTemp.c_str());
-
-				int tempList[7];
-				int humidityList[7];
-				std::string dayList[7];
-
-				this->chart2->Series["Wilgotność [%]"]->Points->Clear();
-				this->chart1->Series["Temperatura [°C]"]->Points->Clear();
-
-				for (int i = 0; i <= 6; i++) {
-
-					std::string dt = fastWriter.write(root["list"][i]["dt"]).c_str();
-					dt.erase(std::remove(dt.begin(), dt.end(), '\"'));
-					time_t dtString = atoi(dt.c_str());
-					tm dtTime = *localtime(&dtString);
-					char bufor[64];
-					strftime(bufor, sizeof(bufor), "%d.%m", &dtTime);
-					std::string dtResult = ("[container]: \"%s\"\n", bufor);
-					dayList[i] = dtResult;
-
-					std::string x = fastWriter.write(root["list"][i]["temp"]["day"]).c_str();
-					x.erase(std::remove(x.begin(), x.end(), '\"'));
-					tempList[i] = std::stoi(x) - 272;
-					this->chart1->Series["Temperatura [°C]"]->Points->AddXY(gcnew String(dayList[i].c_str()), tempList[i]);
-
-					std::string y = fastWriter.write(root["list"][i]["humidity"]).c_str();
-					y.erase(std::remove(y.begin(), y.end(), '\"'));
-					humidityList[i] = std::stoi(y);
-					this->chart2->Series["Wilgotność [%]"]->Points->AddXY(gcnew String(dayList[i].c_str()), humidityList[i]);
-
-				}
-				// Ustawienie miasta
-				this->label2->Text = this->textBox1->Text;
-				this->label4->Text = this->textBox1->Text;
-				this->label6->Text = this->textBox1->Text;
-
-
-				std::string main1 = fastWriter.write(root["list"][0]["weather"][0]["main"]);
-				main1.erase(std::remove(main1.begin(), main1.end(), '\"'));
-				const char* snow1 = "Snow";
-				std::string snow = "Snow";
-				char s[] = "S";
-				char r[] = "R";
-				if (main1[0] == s[0]) {
-					pictureBox37->Image = Image::FromFile("assets/winter2.png");
-
-				}
-				else if (main1[0] == r[0]) {
-					pictureBox37->Image = Image::FromFile("assets/parasol.png");
-
-				}
-
-				if (tempInt < 2) {
-					pictureBoxGirl->Image = Image::FromFile("assets/winter.png");
-				}
-				else if (tempInt >= 2 && tempInt < 15) {
-					pictureBoxGirl->Image = Image::FromFile("assets/autumn.png");
-				}
-				else if (tempInt >= 15 && tempInt < 25) {
-					pictureBoxGirl->Image = Image::FromFile("assets/spring.png");
-
-				}
-				else {
-					pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
-					if (main1 != "Rain") {
-						pictureBox37->Image = Image::FromFile("assets/summer2.png");
-					}
-
-				}
-			}
-			else {
-				MessageBox::Show("Źle wpisane miasto", "Błąd");
-			}
 		}
 #pragma endregion
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
