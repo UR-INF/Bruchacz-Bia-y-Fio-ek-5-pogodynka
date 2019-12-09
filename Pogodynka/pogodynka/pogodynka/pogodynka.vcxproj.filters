@@ -40,5 +40,20 @@
     <Image Include="..\..\..\..\..\..\Desktop\pog-lib\summer.png">
       <Filter>Pliki zasobów</Filter>
     </Image>
+    <Image Include="parasol.bmp">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="Image1.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="assets\parasol.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="pictureBox37.Image.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
+    <Image Include="assets\summer2.png">
+      <Filter>Pliki zasobów</Filter>
+    </Image>
   </ItemGroup>
 </Project>

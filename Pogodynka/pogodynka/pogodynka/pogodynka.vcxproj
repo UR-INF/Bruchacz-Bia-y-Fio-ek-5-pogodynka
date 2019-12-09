@@ -152,6 +152,11 @@
     <Image Include="..\..\..\..\..\..\Desktop\pog-lib\rain.png" />
     <Image Include="..\..\..\..\..\..\Desktop\pog-lib\summer.png" />
     <Image Include="..\..\..\..\..\..\Desktop\pog-lib\winter.png" />
+    <Image Include="assets\parasol.png" />
+    <Image Include="assets\summer2.png" />
+    <Image Include="Image1.png" />
+    <Image Include="parasol.bmp" />
+    <Image Include="pictureBox37.Image.png" />
     <Image Include="winter.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

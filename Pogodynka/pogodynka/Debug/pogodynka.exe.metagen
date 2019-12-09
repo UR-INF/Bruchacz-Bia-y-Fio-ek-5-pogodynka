@@ -23,3 +23,5 @@ Class pogodynka.MainForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Methods:
     getImageFromRes(Int32 IsLong): PrivateScope, Public, HideBySig
+    params_string(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, map<std::basic_string<char\,std::char_traits<char>\,std::allocator<char> >\,std::basic_string<char\,std::char_traits<char>\,std::allocator<char> >\,std::less<std::basic_string<char\,std::char_traits<char>\,std::allocator<char> > >\,std::allocator<std::pair<std::basic_string<char\,std::char_traits<char>\,std::allocator<char> > const \,std::basic_string<char\,std::char_traits<char>\,std::allocator<char> > > > >* IsImplicitlyDereferenced): PrivateScope, Public, Static, HideBySig
+    toStandardString(basic_string<char\,std::char_traits<char>\,std::allocator<char> >*, String): PrivateScope, Public, Static, HideBySig
