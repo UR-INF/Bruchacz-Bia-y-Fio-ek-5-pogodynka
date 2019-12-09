@@ -108,7 +108,7 @@ namespace pogodynka {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::TabPage^ tabPage3;
-	private: System::Windows::Forms::PictureBox^ pictureBox2;
+
 	private: System::Windows::Forms::Label^ label1;
 	private: System::Windows::Forms::PictureBox^ pictureBox12;
 	private: System::Windows::Forms::PictureBox^ pictureBox11;
@@ -244,7 +244,6 @@ namespace pogodynka {
 			this->labelSunset = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->labelSunrise = (gcnew System::Windows::Forms::Label());
-			this->pictureBox2 = (gcnew System::Windows::Forms::PictureBox());
 			this->pictureBox1 = (gcnew System::Windows::Forms::PictureBox());
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->labelTimezone = (gcnew System::Windows::Forms::Label());
@@ -298,7 +297,6 @@ namespace pogodynka {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->BeginInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->BeginInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->tabPage2->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->chart1))->BeginInit();
@@ -397,7 +395,6 @@ namespace pogodynka {
 			this->tabPage1->Controls->Add(this->labelSunset);
 			this->tabPage1->Controls->Add(this->label1);
 			this->tabPage1->Controls->Add(this->labelSunrise);
-			this->tabPage1->Controls->Add(this->pictureBox2);
 			this->tabPage1->Controls->Add(this->pictureBox1);
 			this->tabPage1->Controls->Add(this->textBox1);
 			this->tabPage1->Controls->Add(this->labelTimezone);
@@ -882,15 +879,6 @@ namespace pogodynka {
 			this->labelSunrise->Text = L"Wschód";
 			this->labelSunrise->TextAlign = System::Drawing::ContentAlignment::MiddleLeft;
 			// 
-			// pictureBox2
-			// 
-			this->pictureBox2->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox2.Image")));
-			this->pictureBox2->Location = System::Drawing::Point(396, 22);
-			this->pictureBox2->Name = L"pictureBox2";
-			this->pictureBox2->Size = System::Drawing::Size(82, 108);
-			this->pictureBox2->TabIndex = 5;
-			this->pictureBox2->TabStop = false;
-			// 
 			// pictureBox1
 			// 
 			this->pictureBox1->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"pictureBox1.Image")));
@@ -908,7 +896,7 @@ namespace pogodynka {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(219, 23);
 			this->textBox1->TabIndex = 3;
-			this->textBox1->Text = "Rzeszow";
+			this->textBox1->Text = L"Rzeszow";
 			this->textBox1->TextAlign = System::Windows::Forms::HorizontalAlignment::Center;
 			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::textBox1_TextChanged);
 			// 
@@ -965,7 +953,7 @@ namespace pogodynka {
 			this->chart1->Palette = System::Windows::Forms::DataVisualization::Charting::ChartColorPalette::EarthTones;
 			series1->ChartArea = L"ChartArea1";
 			series1->Legend = L"Legend1";
-			series1->Name = L"Series1";
+			series1->Name = L"Temperatura [°C]";
 			this->chart1->Series->Add(series1);
 			this->chart1->Size = System::Drawing::Size(754, 379);
 			this->chart1->TabIndex = 35;
@@ -1045,7 +1033,7 @@ namespace pogodynka {
 			this->tabPage3->Padding = System::Windows::Forms::Padding(3);
 			this->tabPage3->Size = System::Drawing::Size(792, 574);
 			this->tabPage3->TabIndex = 2;
-			this->tabPage3->Text = L"Opady 7 dni";
+			this->tabPage3->Text = L"Wilgotność 7 dni";
 			this->tabPage3->UseVisualStyleBackColor = true;
 			// 
 			// chart2
@@ -1058,7 +1046,7 @@ namespace pogodynka {
 			this->chart2->Name = L"chart2";
 			series2->ChartArea = L"ChartArea1";
 			series2->Legend = L"Legend1";
-			series2->Name = L"Series1";
+			series2->Name = L"Wilgotność [%]";
 			this->chart2->Series->Add(series2);
 			this->chart2->Size = System::Drawing::Size(754, 379);
 			this->chart2->TabIndex = 41;
@@ -1260,7 +1248,6 @@ namespace pogodynka {
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox7))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox4))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox3))->EndInit();
-			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox2))->EndInit();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
 			this->tabPage2->ResumeLayout(false);
 			this->tabPage2->PerformLayout();
@@ -1436,16 +1423,39 @@ namespace pogodynka {
 	
 		int tempList[7];
 		int humidityList[7];
+		std::string dayList[7];
+
+		this->chart2->Series["Wilgotność [%]"]->Points->Clear();
+		this->chart1->Series["Temperatura [°C]"]->Points->Clear();
 
 	for (int i = 0; i <= 6; i++){
+
+		std::string dt = fastWriter.write(root["list"][i]["dt"]).c_str();
+		dt.erase(std::remove(dt.begin(), dt.end(), '\"'));
+		time_t dtString = atoi(dt.c_str());
+		tm dtTime = *localtime(&dtString);
+		char bufor[64];
+		strftime(bufor, sizeof(bufor), "%d.%m", &dtTime);
+		std::string dtResult = ("[container]: \"%s\"\n", bufor);
+		dayList[i] = dtResult;
+
 		std::string x = fastWriter.write(root["list"][i]["temp"]["day"]).c_str();
 		x.erase(std::remove(x.begin(), x.end(), '\"'));
 		tempList[i] = std::stoi(x) - 272;
+		this->chart1->Series["Temperatura [°C]"]->Points->AddXY(gcnew String(dayList[i].c_str()), tempList[i]);
 
 		std::string y = fastWriter.write(root["list"][i]["humidity"]).c_str();
 		y.erase(std::remove(y.begin(), y.end(), '\"'));
-		humidityList[i] = std::stoi(y) - 272;
+		humidityList[i] = std::stoi(y);
+		this->chart2->Series["Wilgotność [%]"]->Points->AddXY(gcnew String(dayList[i].c_str()), humidityList[i]);
+
 	}
+	this->label2->Text = this->textBox1->Text;
+	this->label4->Text = this->textBox1->Text;
+	this->label6->Text = this->textBox1->Text;
+
+
+
 	}
 
 
