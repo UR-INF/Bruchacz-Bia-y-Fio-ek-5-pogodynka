@@ -8,6 +8,7 @@
 #include <sstream> 
 #include <ctime>
 #include <msclr\marshal_cppstd.h>
+#include <chrono>
 
 static std::string readBuffer;
 namespace pogodynka {
@@ -41,6 +42,8 @@ namespace pogodynka {
 
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
+		static int timezoneForTimer = 1;
+	
 	public:
 		MainForm(void)
 		{
@@ -48,6 +51,7 @@ namespace pogodynka {
 			//
 			//TODO: W tym miejscu dodaj kod konstruktora
 			//
+			
 		}
 
 
@@ -162,6 +166,8 @@ namespace pogodynka {
 	private: System::Windows::Forms::Label^ dataLabel;
 
 	private: System::Windows::Forms::PictureBox^ pictureBox36;
+private: System::Windows::Forms::Timer^ timer1;
+private: System::ComponentModel::IContainer^ components;
 
 
 
@@ -180,7 +186,7 @@ namespace pogodynka {
 		/// <summary>
 		/// Wymagana zmienna projektanta.
 		/// </summary>
-		System::ComponentModel::Container^ components;
+
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -189,6 +195,7 @@ namespace pogodynka {
 		/// </summary>
 		void InitializeComponent(void)
 		{
+			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(MainForm::typeid));
 			System::Windows::Forms::DataVisualization::Charting::ChartArea^ chartArea1 = (gcnew System::Windows::Forms::DataVisualization::Charting::ChartArea());
 			System::Windows::Forms::DataVisualization::Charting::Legend^ legend1 = (gcnew System::Windows::Forms::DataVisualization::Charting::Legend());
@@ -273,6 +280,7 @@ namespace pogodynka {
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label7 = (gcnew System::Windows::Forms::Label());
 			this->pictureBox35 = (gcnew System::Windows::Forms::PictureBox());
+			this->timer1 = (gcnew System::Windows::Forms::Timer(this->components));
 			this->tabControl1->SuspendLayout();
 			this->tabPage1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBoxGirl))->BeginInit();
@@ -1137,13 +1145,14 @@ namespace pogodynka {
 			this->dataLabel->AutoSize = true;
 			this->dataLabel->BackColor = System::Drawing::Color::FromArgb(static_cast<System::Int32>(static_cast<System::Byte>(51)), static_cast<System::Int32>(static_cast<System::Byte>(74)),
 				static_cast<System::Int32>(static_cast<System::Byte>(94)));
-			this->dataLabel->Font = (gcnew System::Drawing::Font(L"Arial Black", 70, System::Drawing::FontStyle::Bold));
+			this->dataLabel->Font = (gcnew System::Drawing::Font(L"Arial Black", 49, System::Drawing::FontStyle::Bold));
 			this->dataLabel->ForeColor = System::Drawing::SystemColors::ButtonHighlight;
-			this->dataLabel->Location = System::Drawing::Point(196, 252);
+			this->dataLabel->Location = System::Drawing::Point(174, 277);
 			this->dataLabel->Name = L"dataLabel";
-			this->dataLabel->Size = System::Drawing::Size(400, 132);
+			this->dataLabel->Size = System::Drawing::Size(436, 93);
 			this->dataLabel->TabIndex = 48;
-			this->dataLabel->Text = L"14 : 28";
+			this->dataLabel->Text = L"14 : 28 : 33";
+			this->dataLabel->TextAlign = System::Drawing::ContentAlignment::MiddleCenter;
 			// 
 			// pictureBox36
 			// 
@@ -1213,6 +1222,11 @@ namespace pogodynka {
 			this->pictureBox35->Size = System::Drawing::Size(318, 108);
 			this->pictureBox35->TabIndex = 41;
 			this->pictureBox35->TabStop = false;
+			// 
+			// timer1
+			// 
+			this->timer1->Enabled = true;
+			this->timer1->Tick += gcnew System::EventHandler(this, &MainForm::timer1_Tick);
 			// 
 			// MainForm
 			// 
@@ -1345,6 +1359,7 @@ namespace pogodynka {
 		timezone.erase(std::remove(timezone.begin(), timezone.end(), '\"'));
 		int timezoneInt = std::stoi(timezone);
 		int result = timezoneInt / 3600;
+		timezoneForTimer = timezoneInt / 3600;
 		std::string resultTimezone = (std::to_string(result) + " GMT");
 		this->labelTimezoneData->Text = gcnew String(resultTimezone.c_str());
 
@@ -1450,6 +1465,8 @@ namespace pogodynka {
 		this->chart2->Series["Wilgotność [%]"]->Points->AddXY(gcnew String(dayList[i].c_str()), humidityList[i]);
 
 	}
+
+	// Ustawienie miasta
 	this->label2->Text = this->textBox1->Text;
 	this->label4->Text = this->textBox1->Text;
 	this->label6->Text = this->textBox1->Text;
@@ -1549,5 +1566,23 @@ namespace pogodynka {
 	private: System::Void summer_Click(System::Object^ sender, System::EventArgs^ e) {
 		pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
 	}
-	};
+	private: System::Void timer1_Tick(System::Object^ sender, System::EventArgs^ e) {
+
+		// Czas
+		time_t time = std::time(0);
+		std::tm* now = std::localtime(&time);
+		int hourInt = now->tm_hour + timezoneForTimer - 1;
+		if (hourInt >= 24) {
+			hourInt -=24;
+		}
+		std::string hour = std::string(2 - std::to_string(hourInt).length(), '0') + std::to_string(hourInt);
+		std::string min = std::string(2 - std::to_string(now->tm_min).length(), '0') + std::to_string(now->tm_min);
+		std::string sec = std::string(2 - std::to_string(now->tm_sec).length(), '0') + std::to_string(now->tm_sec);
+
+		
+		
+
+		this->dataLabel->Text = gcnew String(hour.c_str()) + " : " + gcnew String(min.c_str()) + " : " + gcnew String(sec.c_str());
+	}
+};
 }
