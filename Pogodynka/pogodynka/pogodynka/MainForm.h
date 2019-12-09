@@ -1288,6 +1288,7 @@ private: System::ComponentModel::IContainer^ components;
 				timezone.erase(std::remove(timezone.begin(), timezone.end(), '\"'));
 				int timezoneInt = std::stoi(timezone);
 				int result = timezoneInt / 3600;
+				timezoneForTimer = result;
 				std::string resultTimezone = (std::to_string(result) + " GMT");
 				this->labelTimezoneData->Text = gcnew String(resultTimezone.c_str());
 
@@ -1508,6 +1509,7 @@ private: System::ComponentModel::IContainer^ components;
 			timezone.erase(std::remove(timezone.begin(), timezone.end(), '\"'));
 			int timezoneInt = std::stoi(timezone);
 			int result = timezoneInt / 3600;
+			timezoneForTimer = result;
 			std::string resultTimezone = (std::to_string(result) + " GMT");
 			this->labelTimezoneData->Text = gcnew String(resultTimezone.c_str());
 
