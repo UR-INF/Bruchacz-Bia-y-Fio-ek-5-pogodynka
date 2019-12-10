@@ -1544,8 +1544,7 @@ private: System::ComponentModel::IContainer^ components;
 		curl_easy_setopt(hnd, CURLOPT_CUSTOMREQUEST, "GET"); 
 		char linkChar[1100];
 		std::string linkString = "https://community-open-weather-map.p.rapidapi.com/forecast/daily?";
-		linkString.append(params_string({ {"q",toStandardString(this->textBox1->Text) }
-			}));
+		linkString.append(params_string({ {"q",toStandardString(this->textBox1->Text) }}));
 		strcpy(linkChar, linkString.c_str());
 		curl_easy_setopt(hnd, CURLOPT_URL, linkChar);
 
@@ -1735,7 +1734,7 @@ private: System::ComponentModel::IContainer^ components;
 			}
 			else {
 				pictureBoxGirl->Image = Image::FromFile("assets/summer.png");
-				if (main1 != "Rain") {
+				if (main1[0] != r[0]) {
 					pictureBox37->Image = Image::FromFile("assets/summer2.png");
 				}
 				

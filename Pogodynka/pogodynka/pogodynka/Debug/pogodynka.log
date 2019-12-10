@@ -48,48 +48,48 @@ C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.
 C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(226,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
 C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(136,10): warning C4101: 'bufor2': unreferenced local variable
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1549,1): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1548,1): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\string.h(133): message : see declaration of 'strcpy'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1570,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1569,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1575,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1574,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1582,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1581,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1608,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1607,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1611,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1610,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : see declaration of 'localtime'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1618,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1617,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1621,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1620,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : see declaration of 'localtime'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1628,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1627,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1635,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1634,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1642,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1641,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1650,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1649,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1657,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1656,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1664,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1663,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1671,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1670,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1686,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1685,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1689,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1688,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : see declaration of 'localtime'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1695,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1694,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1700,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1699,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1712,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1711,1): warning C4996: 'Json::FastWriter::write': Use StreamWriterBuilder instead
 C:\Users\Perkoz\Desktop\pog-lib\vcpkg\installed\x86-windows\include\json\writer.h(186): message : see declaration of 'Json::FastWriter::write'
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1622,9): warning C4101: 'bufor2': unreferenced local variable
-C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1844,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1621,9): warning C4101: 'bufor2': unreferenced local variable
+C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\pogodynka\MainForm.h(1843,1): warning C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Program Files (x86)\Windows Kits\10\Include\10.0.18362.0\ucrt\time.h(506): message : see declaration of 'localtime'
   MainForm.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   pogodynka.vcxproj -> C:\Users\Perkoz\Documents\GitHub\projekt-cpp-pogodynka\Pogodynka\pogodynka\Debug\pogodynka.exe
