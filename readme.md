@@ -22,3 +22,36 @@ Funkcjonalności aplikacji:
 - Paweł Fiołek
 - Alan Biały
 - Patryk Brzuchacz
+
+## Przykładowe użycie aplikacji:
+
+<br />
+<p align="center">
+  <img height="450" src="ss/1.png"> 
+</p>
+<br/>
+<br />
+<p align="center">
+  <img height="450" src="ss/2.png"> 
+</p>
+<br/>
+<br />
+<p align="center">
+  <img height="450" src="ss/3.png"> 
+</p>
+<br/>
+<br />
+<p align="center">
+  <img height="450" src="ss/4.png"> 
+</p>
+<br/>
+<br />
+<p align="center">
+  <img height="450" src="ss/5.png"> 
+</p>
+<br/>
+<br />
+<p align="center">
+  <img height="450" src="ss/6.png"> 
+</p>
+<br/>
