@@ -18,7 +18,7 @@ Funkcjonalności aplikacji:
 
 ## Instalacja
 
-- [VCPKG](https://github.com/microsoft/vcpkg) -menedżer pakietów dla C++ 
+#### - [VCPKG](https://github.com/microsoft/vcpkg) - menedżer pakietów dla C++ 
 ```sh
 $ > git clone https://github.com/Microsoft/vcpkg.git
 $ > cd vcpkg
@@ -26,17 +26,20 @@ $ > cd vcpkg
 $ PS> .\bootstrap-vcpkg.bat
 $ Linux:~/$ ./bootstrap-vcpkg.sh
 ```
--Następnie(potrzebne uruchomienie jako administrator)
+
+#### - Następnie(potrzebne uruchomienie jako administrator)
 ```sh
 $ PS> .\vcpkg integrate install
 $ Linux:~/$ ./vcpkg integrate install
 ```
-- Instalacja pakietów
+
+#### - Instalacja pakietów
 ```sh
 $ PS> .\vcpkg install curl:x64-windows
 $ PS> .\vcpkg install jsoncpp
 $ PS> .\vcpkg install rapidjson
 ```
+
 ## Wykonał:
 - Paweł Fiołek
 - Alan Biały
